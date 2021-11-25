@@ -11,6 +11,79 @@
         }
     ],
     "paths": {
+        "/profile/{userId}": {
+            "get": {
+                "tags": [
+                    "user-profile-controller"
+                ],
+                "description": "This will return all the user's profile data",
+                "operationId": "getUserProfile",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "The Authorization header is mandatory and its valid must be provide JWT token in the form: Authorization: Bearer + <token>",
+                        "required": true,
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserProfileDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "user-profile-controller"
+                ],
+                "description": "This will update an user's profile",
+                "operationId": "updateUserProfile",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "The Authorization header is mandatory and its valid must be provide JWT token in the form: Authorization: Bearer + <token>",
+                        "required": true,
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserProfileDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
         "/profile/skill/{userId}/{skillId}": {
             "post": {
                 "tags": [
@@ -195,42 +268,6 @@
                 }
             }
         },
-        "/profile/{userId}": {
-            "get": {
-                "tags": [
-                    "user-profile-controller"
-                ],
-                "description": "This will return all the user's profile data",
-                "operationId": "diffResources",
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "The Authorization header is mandatory and its valid must be provide JWT token in the form: Authorization: Bearer + <token>",
-                        "required": true,
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/UserProfileDto"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/profile/skill": {
             "get": {
                 "tags": [
@@ -396,8 +433,52 @@
     },
     "components": {
         "schemas": {
+            "UserInterestDto": {
+                "type": "object",
+                "properties": {
+                    "interestId": {
+                        "type": "string"
+                    },
+                    "interestData": {
+                        "type": "string"
+                    }
+                }
+            },
             "UserProfileDto": {
-                "type": "object"
+                "type": "object",
+                "properties": {
+                    "firstName": {
+                        "type": "string"
+                    },
+                    "lastName": {
+                        "type": "string"
+                    },
+                    "country": {
+                        "type": "string"
+                    },
+                    "age": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "skills": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/UserSkillDto"
+                        }
+                    },
+                    "interests": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/UserInterestDto"
+                        }
+                    },
+                    "friends": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/UserProfileDto"
+                        }
+                    }
+                }
             },
             "UserSkillDto": {
                 "type": "object",
@@ -406,17 +487,6 @@
                         "type": "string"
                     },
                     "skillData": {
-                        "type": "string"
-                    }
-                }
-            },
-            "UserInterestDto": {
-                "type": "object",
-                "properties": {
-                    "interestId": {
-                        "type": "string"
-                    },
-                    "interestData": {
                         "type": "string"
                     }
                 }

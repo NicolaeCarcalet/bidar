@@ -6,6 +6,8 @@ import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import uaic.fii.profile.model.UserProfileDto;
 
@@ -19,7 +21,17 @@ public class UserProfileController {
             name = "Authorization",
             required = true,
             content = @Content(schema = @Schema(type = "string")))
-    public UserProfileDto diffResources() {
+    public UserProfileDto getUserProfile() {
         return new UserProfileDto();
+    }
+
+    @PutMapping("/profile/{userId}")
+    @Operation(description = "This will update an user's profile")
+    @Parameter(in = ParameterIn.HEADER,
+            description = "The Authorization header is mandatory and its valid must be provide JWT token in the form: Authorization: Bearer + <token>",
+            name = "Authorization",
+            required = true,
+            content = @Content(schema = @Schema(type = "string")))
+    public void updateUserProfile(@RequestBody UserProfileDto newSettings) {
     }
 }
