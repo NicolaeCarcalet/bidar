@@ -93,7 +93,7 @@
                                 <li class="list-group-item list-group-item-action list-group-item-secondary">FOAF – an ontology describing persons, their properties and relationships</li>
                                 <li class="list-group-item list-group-item-action list-group-item-secondary">UMBEL – a lightweight reference structure of 20,000 subject concept classes and their relationships derived from OpenCyc, which can act as binding classes to external data; also has links to 1.5 million named entities from DBpedia and YAGO</li>
                             </ul>
-                            <h5>Datasets</h5>
+                            <h5>Some possible datasets are</h5>
                             <ul class="list-group mb-2">
                                 <li class="list-group-item list-group-item-action list-group-item-secondary">DBpedia – a dataset containing extracted data from Wikipedia; it contains about 3.4 million concepts described by 1 billion triples, including abstracts in 11 different languages</li>
                                 <li class="list-group-item list-group-item-action list-group-item-secondary">GeoNames – provides RDF descriptions of more than 7,500,000 geographical features worldwide.</li>
@@ -143,7 +143,7 @@
                                 <section>
                                 	<h3>Final users</h3>
                                 	<p>
-                                		Final users are persons who ultimately use or are intended to ultimately use our product. They can create accounts and access the services offered by our application.
+                                		Final users are persons who ultimately use or are intended to ultimately use our product. They can access the services offered by our application.
                                 	</p>
                                 	<p>
                                 		A person passionate about art who can easily visualize artistic elements in the form of images from a wide range of representations. It provides access to a large comprehensive database through the search engine. You can configure the artistic fields of interest in a simple way based on keywords and the application provides relevant recommendations about the desired art.
@@ -231,13 +231,12 @@
                                         <h4>User Profile Service</h4>
                                         <p>
                                             This service will expose a set of endpoints that will be called by the front end in order to allow the user to manage its profile and data.
-                                            The endpoints exposed by this service, which will be called by the front end application, the user will be able to:
+                                            The endpoints exposed by this service, which will be called by the front end application, the user will be able to change/modify:
                                         <ul class="list-group">
-                                        <li class="list-group-item list-group-item-action list-group-item-secondary">1. Change its personal data, like: first name, last name, location</li>
+                                        <li class="list-group-item list-group-item-action list-group-item-secondary">1. Change its personal data, like: first name, last name, location and age</li>
                                         <li class="list-group-item list-group-item-action list-group-item-secondary">2. In what language he wants the results to be displayed</li>
                                         <li class="list-group-item list-group-item-action list-group-item-secondary">3. Add, remove or update its area of interest</li>
                                         <li class="list-group-item list-group-item-action list-group-item-secondary">4. Add, remove or update its area of skills</li>
-                                        <li class="list-group-item list-group-item-action list-group-item-secondary">5. MySql</li>
                                         </ul>
                                         All this service's input will be validated for correctness(basically, the skills, interests and so on should be choosen from a predfined liet displayed by the frontend application)
                                         As with the other services, each request will be validated by checking that the JWT token is present in it.

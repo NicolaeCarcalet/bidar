@@ -6,6 +6,7 @@ import java.util.List;
 
 @Data
 public class UserProfileDto {
+    private String userId;
     private String firstName;
     private String lastName;
     private String country;

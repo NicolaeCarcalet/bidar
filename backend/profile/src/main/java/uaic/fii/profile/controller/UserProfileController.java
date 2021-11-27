@@ -5,10 +5,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import uaic.fii.profile.model.UserProfileDto;
 
 @RestController
@@ -22,6 +19,11 @@ public class UserProfileController {
             required = true,
             content = @Content(schema = @Schema(type = "string")))
     public UserProfileDto getUserProfile() {
+        return new UserProfileDto();
+    }
+
+    @PostMapping("/profile")
+    public UserProfileDto createProfile(@RequestBody UserProfileDto userProfileDto) {
         return new UserProfileDto();
     }
 
