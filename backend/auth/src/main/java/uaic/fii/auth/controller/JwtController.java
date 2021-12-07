@@ -1,16 +1,22 @@
 package uaic.fii.auth.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import uaic.fii.auth.model.UserCredentials;
+import uaic.fii.auth.service.JwtService;
 
 @RestController
 public class JwtController {
 
-    @PostMapping(value = "/auth", produces = "text/plain")
+    @Autowired
+    private JwtService jwtService;
+
+    @PostMapping(value = "/auth", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
     @ResponseStatus(code = HttpStatus.OK)
     public String getJwtToken(@RequestBody UserCredentials userCredentials) {
-        return "";
+        return jwtService.generateJwt(userCredentials);
     }
 }
 
