@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class UserInterestDto {
-    private String interestId;
+    private Long interestId;
     private String interestData;
 }
