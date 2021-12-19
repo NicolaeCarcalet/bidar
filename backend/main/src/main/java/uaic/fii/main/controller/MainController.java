@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,12 +13,19 @@ import org.springframework.web.bind.annotation.RestController;
 import uaic.fii.main.model.RequestInputDto;
 import uaic.fii.main.model.ResourceDiffDto;
 import uaic.fii.main.model.ResourceDto;
+import uaic.fii.main.service.ResourceDiffService;
+import uaic.fii.main.service.ResourceService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 public class MainController {
+
+    @Autowired
+    private ResourceService resourceService;
+
+    @Autowired
+    private ResourceDiffService resourceDiffService;
 
     @GetMapping("/resources")
     @Operation(description = "This will return all the resources for the given request")
@@ -27,7 +35,7 @@ public class MainController {
                 required = true,
                 content = @Content(schema = @Schema(type = "string")))
     public List<ResourceDto> getResources(@RequestBody RequestInputDto requestInputDto) {
-        return new ArrayList<>();
+        return resourceService.getResources(requestInputDto);
     }
 
     @PostMapping("/diff")
@@ -38,6 +46,6 @@ public class MainController {
             required = true,
             content = @Content(schema = @Schema(type = "string")))
     public ResourceDiffDto diffResources(@RequestBody List<ResourceDto> resourceDtos) {
-        return new ResourceDiffDto();
+        return resourceDiffService.getResourcesDiff(resourceDtos);
     }
 }
