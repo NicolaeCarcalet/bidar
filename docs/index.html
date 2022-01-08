@@ -170,7 +170,7 @@
                                 <section>
                                     <h3>Database</h3>
                                     <p>
-                                        The application will use a relational database, MySql, in order to save user's profile data.
+                                        The application will use a relational database, H2, in order to save user's profile data.
                                     </p>
                                 </section>
 
@@ -309,7 +309,11 @@
                             <section>
                                 <h3>Spring, Spring Boot</h3>
                                 <p>
-                                    Spring Boot will be used thanks to it's flawless support and integration with the Java programming language and Apache Jena.
+                                    Spring Boot will be used thanks to it's flawless support and integration with the Java programming language and Apache Jena. 
+                                    Spring Boot is an application built on top of Sprin. Spring Boot will autoconfigure all the loose ends provided by Spring in order to ease the development of web applications.
+                                    These autoconfiguration capabilities Spring Boot has are quite advanced, Spring Boot being able to compute the right way Spring should be configured based on the libraries that are being used; 
+                                    for example: if Spring Boot detects that the spring-boot-starter-web starter packge was used, then it will set up all the required stuff for Spring to be able to responde to client's requests.
+                                    If in the previous example, Spring Boot would have detected a spring-boot-starter-security package, then it would have configured Spring in such a way that all the requests for all the endpoints exposed would require credentials.
                                 </p>
                             </section>
                             <section>
@@ -333,10 +337,11 @@
                                 </p>
                             </section>
                             <section>
-                                <h3>MySql</h3>
+                                <h3>H2</h3>
                                 <p>
-                                    MySql is an open-source relational database management system. Its name is a combination of "My", the name of co-founder Michael Widenius's daughter, and "SQL", the abbreviation for Structured Query Language. A relational database organizes data into one or more data tables in which data types may be related to each other; these relations help structure the data. SQL is a language programmers use to create, modify and extract data from the relational database, as well as control user access to the database. In addition to relational databases and SQL, an RDBMS like MySQL works with an operating system to implement a relational database in a computer's storage system, manages users, allows for network access and facilitates testing database integrity and creation of backups. <br/>
-                                    MySQL is free and open-source software under the terms of the GNU General Public License, and is also available under a variety of proprietary licenses. MySQL was owned and sponsored by the Swedish company MySQL AB, which was bought by Sun Microsystems (now Oracle Corporation).[8] In 2010, when Oracle acquired Sun, Widenius forked the open-source MySQL project to create MariaDB.
+                                    H2 is a relational databased implemented in Java with a vast set of features.
+                                    H2 has support for all the common features one might expected from a relational database, but it also can be used as an in-memory database, which can speed things up during the development.
+                                    In the project, H2 was used to store user related data, like: credentials, interests, and other profile data.
                                 </p>
                             </section>
                         </div>
@@ -354,12 +359,11 @@
                                 <li class="list-group-item list-group-item-action list-group-item-secondary">2. https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service/queries/examples</li>
                                 <li class="list-group-item list-group-item-action list-group-item-secondary">3. https://jena.apache.org/</li>
                                 <li class="list-group-item list-group-item-action list-group-item-secondary">4. https://www.w3.org/wiki/LinkedData</li>
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">5. https://en.wikipedia.org/wiki/Linked_data</li>
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">6. https://en.wikipedia.org/wiki/MySQL</li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">4. https://www.w3.org/wiki/LinkedData</li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">5. https://www.h2database.com/html/main.html</li>
                             </ol>
                         </div>
                     </div>
-
                 </section>
             </div>
 
