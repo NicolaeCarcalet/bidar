@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import uaic.fii.profile.model.UserProfileDto;
 import uaic.fii.profile.service.UserProfileService;
 
+@CrossOrigin
 @RestController
 public class UserProfileController {
 

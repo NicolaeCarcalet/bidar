@@ -12,6 +12,7 @@ import uaic.fii.profile.service.UserSkillService;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 public class UserSkillController {
 

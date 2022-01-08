@@ -12,6 +12,7 @@ import uaic.fii.profile.service.UserInterestService;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 public class UserInterestController {
 
