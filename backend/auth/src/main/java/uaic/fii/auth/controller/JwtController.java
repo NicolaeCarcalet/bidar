@@ -19,5 +19,6 @@ public class JwtController {
     public String getJwtToken(@RequestBody UserCredentials userCredentials) {
         return jwtService.generateJwt(userCredentials);
     }
+
 }
 
