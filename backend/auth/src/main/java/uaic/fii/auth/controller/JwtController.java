@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import uaic.fii.auth.model.UserCredentials;
 import uaic.fii.auth.service.JwtService;
 
+@CrossOrigin
 @RestController
 public class JwtController {
 
