@@ -25,7 +25,7 @@ public class MainController {
     @Autowired
     private ResourceDiffService resourceDiffService;
 
-    @GetMapping("/resources")
+    @PostMapping("/resources")
     @Operation(description = "This will return all the resources for the given request")
     @Parameter(in = ParameterIn.HEADER,
                 description = "The Authorization header is mandatory and its valid must be provide JWT token in the form: Authorization: Bearer + <token>",

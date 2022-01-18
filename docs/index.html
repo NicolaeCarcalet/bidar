@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en-GB">
-    <head>
-        <title>BIDAR Scholarly technical report</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    </head>
-    <body prefix="schema: http://schema.org/ sa: https://ns.science.ai/">
+
+<head>
+    <title>BIDAR Scholarly technical report</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+</head>
+
+<body prefix="schema: http://schema.org/ sa: https://ns.science.ai/">
     <div class="container">
         <article typeof="schema:ScholarlyArticle">
             <div class="text-center">
@@ -15,15 +20,18 @@
             <div class="row" style="justify-content: center;">
                 <div class="col-md-3">
                     <div class="list-group">
-                        <div class="list-group-item list-group-item-action list-group-item-dark" property="schema:author" typeof="sa:ContributorRole">
+                        <div class="list-group-item list-group-item-action list-group-item-dark"
+                            property="schema:author" typeof="sa:ContributorRole">
                             <span property="schema:givenName">Eduard</span>
                             <span property="schema:familyName">Ghergheluca</span>
                         </div>
-                        <div class="list-group-item list-group-item-action list-group-item-dark" property="schema:author" typeof="sa:ContributorRole">
+                        <div class="list-group-item list-group-item-action list-group-item-dark"
+                            property="schema:author" typeof="sa:ContributorRole">
                             <span property="schema:givenName">Daniel</span>
                             <span property="schema:familyName">Chisa</span>
                         </div>
-                        <div class="list-group-item list-group-item-action list-group-item-dark" property="schema:author" typeof="sa:ContributorRole">
+                        <div class="list-group-item list-group-item-action list-group-item-dark"
+                            property="schema:author" typeof="sa:ContributorRole">
                             <span property="schema:givenName">Nicolae</span>
                             <span property="schema:familyName">Carcalet</span>
                         </div>
@@ -40,8 +48,13 @@
                             What is it?
                         </h2>
                         <div class="card-body">
-                            Bidar is a (micro-)service-based platform able to "intelligently" query, compare, visualize, share, summarize, etc. large (sets of) data/knowledge and additional resources according to user's needs and preferences – consider demographic information, skills, interests (playing games and skateboarding versus WebAssembly programming and fine arts), social status, entourage, etc.
-                            Also, this Web system will suggest related information and/or knowledge according to each user profile and a set of given areas/topics of interest
+                            Bidar is a (micro-)service-based platform able to "intelligently" query, compare, visualize,
+                            share, summarize, etc. large (sets of) data/knowledge and additional resources according to
+                            user's needs and preferences – consider demographic information, skills, interests (playing
+                            games and skateboarding versus WebAssembly programming and fine arts), social status,
+                            entourage, etc.
+                            Also, this Web system will suggest related information and/or knowledge according to each
+                            user profile and a set of given areas/topics of interest
                         </div>
                     </div>
                 </section>
@@ -53,52 +66,105 @@
                             Linked Data Principle
                         </h2>
                         <div class="card-body">
-                            <p>The term Linked Data refers to a set of best practices for publishing structured data on the Web. These principles have been coined by Tim Berners-Lee in the design issue note Linked Data.</p>
-                            <p>It builds upon standard Web technologies such as HTTP, RDF and URIs, but rather than using them to serve web pages only for human readers, it extends them to share information in a way that can be read automatically by computers. Part of the vision of linked data is for the Internet to become a global database.
-                                Linked data may also be open data, in which case it is usually described as linked open data (LOD). <br/> The priciples are:
+                            <p>The term Linked Data refers to a set of best practices for publishing structured data on
+                                the Web. These principles have been coined by Tim Berners-Lee in the design issue note
+                                Linked Data.</p>
+                            <p>It builds upon standard Web technologies such as HTTP, RDF and URIs, but rather than
+                                using them to serve web pages only for human readers, it extends them to share
+                                information in a way that can be read automatically by computers. Part of the vision of
+                                linked data is for the Internet to become a global database.
+                                Linked data may also be open data, in which case it is usually described as linked open
+                                data (LOD). <br /> The priciples are:
                             </p>
                             <ul class="list-group mb-2">
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">Use URIs as names for things</li>
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">Use HTTP URIs so that people can look up those names.</li>
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">When someone looks up a URI, provide useful information</li>
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">Include links to other URIs. so that they can discover more things.</li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">Use URIs as
+                                    names for things</li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">Use HTTP
+                                    URIs so that people can look up those names.</li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">When
+                                    someone looks up a URI, provide useful information</li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">Include
+                                    links to other URIs. so that they can discover more things.</li>
                             </ul>
                             <p>
-                                The idea behind these principles is on the one hand side, to use standards for the representation and the access to data on the Web. On the other hand, the principles propagate to set hyperlinks between data from different sources. These hyperlinks connect all Linked Data into a single global data graph,
-                                similar as the hyperlinks on the classic Web connect all HTML documents into a single global information space. Thus, LinkedData is to spreadsheets and databases what the Web of hypertext documents is to word processor files. The Linked Open Data cloud diagramms give an overview of the linked data sets that are available on the Web.
+                                The idea behind these principles is on the one hand side, to use standards for the
+                                representation and the access to data on the Web. On the other hand, the principles
+                                propagate to set hyperlinks between data from different sources. These hyperlinks
+                                connect all Linked Data into a single global data graph,
+                                similar as the hyperlinks on the classic Web connect all HTML documents into a single
+                                global information space. Thus, LinkedData is to spreadsheets and databases what the Web
+                                of hypertext documents is to word processor files. The Linked Open Data cloud diagramms
+                                give an overview of the linked data sets that are available on the Web.
                             </p>
-                            <p>Tim Berners-Lee later restated these principles at a 2009 TED conference, again paraphrased along the following:</p>
+                            <p>Tim Berners-Lee later restated these principles at a 2009 TED conference, again
+                                paraphrased along the following:</p>
                             <ul class="list-group mb-2">
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">All conceptual things should have a name starting with HTTP.</li>
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">Looking up an HTTP name should return useful data about the thing in question in a standard format.</li>
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">Anything else that that same thing has a relationship with through its data should also be given a name beginning with HTTP.</li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">All
+                                    conceptual things should have a name starting with HTTP.</li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">Looking up
+                                    an HTTP name should return useful data about the thing in question in a standard
+                                    format.</li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">Anything
+                                    else that that same thing has a relationship with through its data should also be
+                                    given a name beginning with HTTP.</li>
                             </ul>
                             <h5>Linked open data</h5>
-                            <p>Linked open data are linked data that are open data. Tim Berners-Lee gives the clearest definition of linked open data in differentiation with linked data.
-                                "Linked Open Data (LOD) is Linked Data which is released under an open license, which does not impede its reuse for free." — Tim Berners-Lee, Linked Data</p>
+                            <p>Linked open data are linked data that are open data. Tim Berners-Lee gives the clearest
+                                definition of linked open data in differentiation with linked data.
+                                "Linked Open Data (LOD) is Linked Data which is released under an open license, which
+                                does not impede its reuse for free." — Tim Berners-Lee, Linked Data</p>
                             <p>Large linked open data sets include DBpedia and Wikidata.</p>
-                            <p>Tim Berners-Lee has suggested a 5-star scheme for grading the quality of open data on the web, for which the highest ranking is Linked Open Data:</p>
+                            <p>Tim Berners-Lee has suggested a 5-star scheme for grading the quality of open data on the
+                                web, for which the highest ranking is Linked Open Data:</p>
                             <ul class="list-group mb-2">
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">1 star: data is openly available in some format. </li>
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">2 stars: data is available in a structured format, such as Microsoft Excel file format (.xls).</li>
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">3 stars: data is available in a non-proprietary structured format, such as Comma-separated values (.csv).</li>
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">4 stars: data follows W3C standards, like using RDF and employing URIs.</li>
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">5 stars: all of the other, plus links to other Linked Open Data sources.</li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">1 star:
+                                    data is openly available in some format. </li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">2 stars:
+                                    data is available in a structured format, such as Microsoft Excel file format
+                                    (.xls).</li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">3 stars:
+                                    data is available in a non-proprietary structured format, such as Comma-separated
+                                    values (.csv).</li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">4 stars:
+                                    data follows W3C standards, like using RDF and employing URIs.</li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">5 stars:
+                                    all of the other, plus links to other Linked Open Data sources.</li>
                             </ul>
-                            <p>The goal of the W3C Semantic Web Education and Outreach group's Linking Open Data community project is to extend the Web with a data commons by publishing various open datasets as RDF on the Web and by setting RDF links between data items from different data sources. In October 2007, datasets consisted of over two billion RDF triples, which were interlinked by over two million RDF links.
-                                By September 2011 this had grown to 31 billion RDF triples, interlinked by around 504 million RDF links. A detailed statistical breakdown was published in 2014.
+                            <p>The goal of the W3C Semantic Web Education and Outreach group's Linking Open Data
+                                community project is to extend the Web with a data commons by publishing various open
+                                datasets as RDF on the Web and by setting RDF links between data items from different
+                                data sources. In October 2007, datasets consisted of over two billion RDF triples, which
+                                were interlinked by over two million RDF links.
+                                By September 2011 this had grown to 31 billion RDF triples, interlinked by around 504
+                                million RDF links. A detailed statistical breakdown was published in 2014.
                             </p>
-                            <p>Ontologies are formal descriptions of data structures. Some of the better known ontologies are:</p>
+                            <p>Ontologies are formal descriptions of data structures. Some of the better known
+                                ontologies are:</p>
                             <ul class="list-group mb-2">
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">FOAF – an ontology describing persons, their properties and relationships</li>
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">UMBEL – a lightweight reference structure of 20,000 subject concept classes and their relationships derived from OpenCyc, which can act as binding classes to external data; also has links to 1.5 million named entities from DBpedia and YAGO</li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">FOAF – an
+                                    ontology describing persons, their properties and relationships</li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">UMBEL – a
+                                    lightweight reference structure of 20,000 subject concept classes and their
+                                    relationships derived from OpenCyc, which can act as binding classes to external
+                                    data; also has links to 1.5 million named entities from DBpedia and YAGO</li>
                             </ul>
                             <h5>Some possible datasets are</h5>
                             <ul class="list-group mb-2">
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">DBpedia – a dataset containing extracted data from Wikipedia; it contains about 3.4 million concepts described by 1 billion triples, including abstracts in 11 different languages</li>
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">GeoNames – provides RDF descriptions of more than 7,500,000 geographical features worldwide.</li>
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">Wikidata – a collaboratively-created linked dataset that acts as central storage for the structured data of its Wikimedia Foundation sister projects</li>
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">Global Research Identifier Database (GRID) – an international database of 89,506 institutions engaged in academic research, with 14,401 relationships, models two types of relationships: a parent-child relationship that defines a subordinate association, and a related relationship that describes other associations</li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">DBpedia – a
+                                    dataset containing extracted data from Wikipedia; it contains about 3.4 million
+                                    concepts described by 1 billion triples, including abstracts in 11 different
+                                    languages</li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">GeoNames –
+                                    provides RDF descriptions of more than 7,500,000 geographical features worldwide.
+                                </li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">Wikidata –
+                                    a collaboratively-created linked dataset that acts as central storage for the
+                                    structured data of its Wikimedia Foundation sister projects</li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">Global
+                                    Research Identifier Database (GRID) – an international database of 89,506
+                                    institutions engaged in academic research, with 14,401 relationships, models two
+                                    types of relationships: a parent-child relationship that defines a subordinate
+                                    association, and a related relationship that describes other associations</li>
                             </ul>
                         </div>
                     </div>
@@ -118,13 +184,18 @@
                                     High level overview
                                 </h3>
                                 <p>
-                                    The web application is made up of multiple services that communicate with one another in order to provide the functionality expected by the user.
+                                    The web application is made up of multiple services that communicate with one
+                                    another in order to provide the functionality expected by the user.
                                     These services are:
                                 <ol class="list-group">
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">1. Authentication service</li>
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">2. Main service</li>
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">3. Recommandations service</li>
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">4. User Profile Service</li>
+                                    <li class="list-group-item list-group-item-action list-group-item-secondary">1.
+                                        Authentication service</li>
+                                    <li class="list-group-item list-group-item-action list-group-item-secondary">2. Main
+                                        service</li>
+                                    <li class="list-group-item list-group-item-action list-group-item-secondary">3.
+                                        Recommandations service</li>
+                                    <li class="list-group-item list-group-item-action list-group-item-secondary">4. User
+                                        Profile Service</li>
                                 </ol>
                                 </p>
                                 <section>
@@ -132,45 +203,61 @@
 
                                     <figure typeof="sa:Image">
                                         <img src="./diag.PNG" alt="Main Services and Modules Architecture">
-                                        <figcaption>This picture from aboce shows the services called by the frontend application</figcaption>
+                                        <figcaption>This picture from aboce shows the services called by the frontend
+                                            application</figcaption>
                                     </figure>
 
                                     <figure typeof="sa:Image">
                                         <img src="./seq.PNG" alt="Sequence UML diagram">
-                                        <figcaption>This diagrams shows the order in which the services available in the backend will be called by the frontend and also how the backend services retrieves the right data</figcaption>
+                                        <figcaption>This diagrams shows the order in which the services available in the
+                                            backend will be called by the frontend and also how the backend services
+                                            retrieves the right data</figcaption>
                                     </figure>
                                 </section>
                                 <section>
-                                	<h3>Final users</h3>
-                                	<p>
-                                		Final users are persons who ultimately use or are intended to ultimately use our product. They can access the services offered by our application.
-                                	</p>
-                                	<p>
-                                		A person passionate about art who can easily visualize artistic elements in the form of images from a wide range of representations. It provides access to a large comprehensive database through the search engine. You can configure the artistic fields of interest in a simple way based on keywords and the application provides relevant recommendations about the desired art.
-                                	</p>
-                                	<p>
-                                		A programmer who develops an art-based application and finds our approach appropriate as a way to integrate as a service exposed by our api. The application can also contain elements that inspire him in developing a similar application.
-                                	</p>
+                                    <h3>Final users</h3>
+                                    <p>
+                                        Final users are persons who ultimately use or are intended to ultimately use our
+                                        product. They can access the services offered by our application.
+                                    </p>
+                                    <p>
+                                        A person passionate about art who can easily visualize artistic elements in the
+                                        form of images from a wide range of representations. It provides access to a
+                                        large comprehensive database through the search engine. You can configure the
+                                        artistic fields of interest in a simple way based on keywords and the
+                                        application provides relevant recommendations about the desired art.
+                                    </p>
+                                    <p>
+                                        A programmer who develops an art-based application and finds our approach
+                                        appropriate as a way to integrate as a service exposed by our api. The
+                                        application can also contain elements that inspire him in developing a similar
+                                        application.
+                                    </p>
                                 </section>
                                 <section>
                                     <h3>Data</h3>
                                     <p>
                                         The main source of data for the application is DBpedia.
-                                        The data will be retrieved from DBpedia by calling the sparql endpoint exposed by it.
+                                        The data will be retrieved from DBpedia by calling the sparql endpoint exposed
+                                        by it.
                                     </p>
                                 </section>
 
                                 <section>
                                     <h3>Front-end</h3>
                                     <p>
-                                        The application front-end will be implemented in Vue.js and will be styled with bootstrap. The data will be extracted through AJAX requests and rendered in different pages to be used in different scenarios such as filtering, searching, customizing etc.
+                                        The application front-end will be implemented in Vue.js and will be styled with
+                                        bootstrap. The data will be extracted through AJAX requests and rendered in
+                                        different pages to be used in different scenarios such as filtering, searching,
+                                        customizing etc.
                                     </p>
                                 </section>
 
                                 <section>
                                     <h3>Database</h3>
                                     <p>
-                                        The application will use a relational database, H2, in order to save user's profile data.
+                                        The application will use a relational database, H2, in order to save user's
+                                        profile data.
                                     </p>
                                 </section>
 
@@ -180,15 +267,22 @@
                                     <section>
                                         <h4>Authentication service</h4>
                                         <p>
-                                            This service will check the user's credentials in order to make sure he is an already existing customer of the platform.
+                                            This service will check the user's credentials in order to make sure he is
+                                            an already existing customer of the platform.
                                         </p>
                                         <p>
-                                            From a technical point of view, this service will work using JWT token. The front-end, will make, on behalf of the user a 'log-in'
-                                            request to this service, and the said service will check the credentials, and if they are fine(that is, this user's credentials are already present in the database)
-                                            then it will generate a JWT token for the user and send it back to him in the response's payload.
+                                            From a technical point of view, this service will work using JWT token. The
+                                            front-end, will make, on behalf of the user a 'log-in'
+                                            request to this service, and the said service will check the credentials,
+                                            and if they are fine(that is, this user's credentials are already present in
+                                            the database)
+                                            then it will generate a JWT token for the user and send it back to him in
+                                            the response's payload.
                                         </p>
                                         <p>
-                                            This JWT token will keep, besides an validity timeframe, metadata about the user like: the geographical location, its name etc and the preferences it has selected in the frontend UI.
+                                            This JWT token will keep, besides an validity timeframe, metadata about the
+                                            user like: the geographical location, its name etc and the preferences it
+                                            has selected in the frontend UI.
                                         </p>
                                     </section>
 
@@ -198,11 +292,15 @@
                                         <section>
                                             <h5>Overview</h5>
                                             <p>
-                                                This service, through the endpoints it will expose, will provide the main functionality of the platform.
-                                                The said endpoints will provide a REST interface that the front-end component can interact with through HTTP calls in order to allow the user to interact with the web application.
+                                                This service, through the endpoints it will expose, will provide the
+                                                main functionality of the platform.
+                                                The said endpoints will provide a REST interface that the front-end
+                                                component can interact with through HTTP calls in order to allow the
+                                                user to interact with the web application.
                                             </p>
                                             <p>
-                                                Furthermore, all the requests that will be made to this service will be checked for the JWT token that is mandatory.
+                                                Furthermore, all the requests that will be made to this service will be
+                                                checked for the JWT token that is mandatory.
                                                 In case the token isn't present, the request will be rejected.
                                             </p>
                                         </section>
@@ -210,19 +308,29 @@
                                         <section>
                                             <h5>Functionality</h5>
                                             <p>
-                                                One of the features that will be provided by this service is the ability of retrieving, from the database, all the information of interest for the user based on it's metadata and interests.
+                                                One of the features that will be provided by this service is the ability
+                                                of retrieving, from the database, all the information of interest for
+                                                the user based on it's metadata and interests.
                                             </p>
                                             <p>
-                                                Another feature provided by this service is represented by the comparison capabilities between two sets of content returned by the data source.
-                                                Basically, the service will retrieve the right data for the two input and generate a difference between them.
+                                                Another feature provided by this service is represented by the
+                                                comparison capabilities between two sets of content returned by the data
+                                                source.
+                                                Basically, the service will retrieve the right data for the two input
+                                                and generate a difference between them.
                                                 The response will contain the differences between the two resources.
                                             </p>
                                             <p>
-                                                To retrieve the data, this service will make send sparql queries to some sparql endpoints exposed by the sources from which the data will be gathered.
+                                                To retrieve the data, this service will make send sparql queries to some
+                                                sparql endpoints exposed by the sources from which the data will be
+                                                gathered.
                                             </p>
                                             <p>
-                                                This service will take into account the reliability and fault tolerance of the sparql endpoints that are exposed and queried when a request gets processed.
-                                                Therefor, the application will attempt a retry if a request to the dbpedia's endpoints fails.
+                                                This service will take into account the reliability and fault tolerance
+                                                of the sparql endpoints that are exposed and queried when a request gets
+                                                processed.
+                                                Therefor, the application will attempt a retry if a request to the
+                                                dbpedia's endpoints fails.
                                             </p>
                                         </section>
                                     </section>
@@ -230,16 +338,30 @@
                                     <section>
                                         <h4>User Profile Service</h4>
                                         <p>
-                                            This service will expose a set of endpoints that will be called by the front end in order to allow the user to manage its profile and data.
-                                            The endpoints exposed by this service, which will be called by the front end application, the user will be able to change/modify:
+                                            This service will expose a set of endpoints that will be called by the front
+                                            end in order to allow the user to manage its profile and data.
+                                            The endpoints exposed by this service, which will be called by the front end
+                                            application, the user will be able to change/modify:
                                         <ul class="list-group">
-                                        <li class="list-group-item list-group-item-action list-group-item-secondary">1. Change its personal data, like: first name, last name, location and age</li>
-                                        <li class="list-group-item list-group-item-action list-group-item-secondary">2. In what language he wants the results to be displayed</li>
-                                        <li class="list-group-item list-group-item-action list-group-item-secondary">3. Add, remove or update its area of interest</li>
-                                        <li class="list-group-item list-group-item-action list-group-item-secondary">4. Add, remove or update its area of skills</li>
+                                            <li
+                                                class="list-group-item list-group-item-action list-group-item-secondary">
+                                                1. Change its personal data, like: first name, last name, location and
+                                                age</li>
+                                            <li
+                                                class="list-group-item list-group-item-action list-group-item-secondary">
+                                                2. In what language he wants the results to be displayed</li>
+                                            <li
+                                                class="list-group-item list-group-item-action list-group-item-secondary">
+                                                3. Add, remove or update its area of interest</li>
+                                            <li
+                                                class="list-group-item list-group-item-action list-group-item-secondary">
+                                                4. Add, remove or update its area of skills</li>
                                         </ul>
-                                        All this service's input will be validated for correctness(basically, the skills, interests and so on should be choosen from a predfined liet displayed by the frontend application)
-                                        As with the other services, each request will be validated by checking that the JWT token is present in it.
+                                        All this service's input will be validated for correctness(basically, the
+                                        skills, interests and so on should be choosen from a predfined liet displayed by
+                                        the frontend application)
+                                        As with the other services, each request will be validated by checking that the
+                                        JWT token is present in it.
                                         </p>
                                     </section>
 
@@ -249,19 +371,26 @@
                                         <section>
                                             <h5>Overview</h5>
                                             <p>
-                                                This service will expose a single endpoint, that will receive as input the user's pereferences and other input data provided by him and will sent back a list of
+                                                This service will expose a single endpoint, that will receive as input
+                                                the user's pereferences and other input data provided by him and will
+                                                sent back a list of
                                                 recommended data and genres of interest.
                                             </p>
                                         </section>
 
                                         <section>
                                             <h5>Recommandation generation approaches</h5>
-                                            <p>For recommandations the user's history will be taken into account by the algorithm that will generate the said recomandations.</p>
+                                            <p>For recommandations the user's history will be taken into account by the
+                                                algorithm that will generate the said recomandations.</p>
                                             <p>
                                                 There are various algorithms/approaches available, for example:
                                             <ul class="list-group">
-                                            <li class="list-group-item list-group-item-action list-group-item-secondary">1. A simple rule based apporach</li>
-                                            <li class="list-group-item list-group-item-action list-group-item-secondary">2. Kmeans algorithm</li>
+                                                <li
+                                                    class="list-group-item list-group-item-action list-group-item-secondary">
+                                                    1. A simple rule based apporach</li>
+                                                <li
+                                                    class="list-group-item list-group-item-action list-group-item-secondary">
+                                                    2. Kmeans algorithm</li>
                                             </ul>
                                             </p>
                                         </section>
@@ -269,8 +398,11 @@
                                         <section>
                                             <h5>Misc. technical details</h5>
                                             <p>
-                                                This endpoint will be called by the front-end application when it has to display a page with the content of interest for the user.
-                                                It goes without saying, that any request made to the endpoint exposed by the service will be valided in order to make sure the user is authenticated.
+                                                This endpoint will be called by the front-end application when it has to
+                                                display a page with the content of interest for the user.
+                                                It goes without saying, that any request made to the endpoint exposed by
+                                                the service will be valided in order to make sure the user is
+                                                authenticated.
                                             </p>
                                         </section>
                                     </section>
@@ -289,57 +421,82 @@
                     <div class="card">
                         <h2 class="card-header">Tech stack</h2>
                         <div class="card-body">
-                            <p>In order to make all the described things happen, we'll use the following technologies</p>
+                            <p>In order to make all the described things happen, we'll use the following technologies
+                            </p>
                             <ol class="list-group mb-2">
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">1. Java</li>
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">2. Apache Jena</li>
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">3. Spring + Spring Boot</li>
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">4. Bootstrap</li>
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">5. Vue.js</li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">1. Java
+                                </li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">2. Apache
+                                    Jena</li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">3. Spring +
+                                    Spring Boot</li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">4.
+                                    Bootstrap</li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">5. Vue.js
+                                </li>
                             </ol>
 
                             <section>
                                 <h3>Java</h3>
                                 <p>
-                                    Java is the main programming language that is going to be used to implement the said services.
-                                    By running on the platform the Java language provides, all the services that make up the backend side of the application
-                                    are able to reap the benefits of all the libraries and frameworks that already exist, and increase their reliability, security and performance by doing so.
+                                    Java is the main programming language that is going to be used to implement the said
+                                    services.
+                                    By running on the platform the Java language provides, all the services that make up
+                                    the backend side of the application
+                                    are able to reap the benefits of all the libraries and frameworks that already
+                                    exist, and increase their reliability, security and performance by doing so.
                                 </p>
                             </section>
                             <section>
                                 <h3>Spring, Spring Boot</h3>
                                 <p>
-                                    Spring Boot will be used thanks to it's flawless support and integration with the Java programming language and Apache Jena. 
-                                    Spring Boot is an application built on top of Sprin. Spring Boot will autoconfigure all the loose ends provided by Spring in order to ease the development of web applications.
-                                    These autoconfiguration capabilities Spring Boot has are quite advanced, Spring Boot being able to compute the right way Spring should be configured based on the libraries that are being used; 
-                                    for example: if Spring Boot detects that the spring-boot-starter-web starter packge was used, then it will set up all the required stuff for Spring to be able to responde to client's requests.
-                                    If in the previous example, Spring Boot would have detected a spring-boot-starter-security package, then it would have configured Spring in such a way that all the requests for all the endpoints exposed would require credentials.
+                                    Spring Boot will be used thanks to it's flawless support and integration with the
+                                    Java programming language and Apache Jena.
+                                    Spring Boot is an application built on top of Sprin. Spring Boot will autoconfigure
+                                    all the loose ends provided by Spring in order to ease the development of web
+                                    applications.
+                                    These autoconfiguration capabilities Spring Boot has are quite advanced, Spring Boot
+                                    being able to compute the right way Spring should be configured based on the
+                                    libraries that are being used;
+                                    for example: if Spring Boot detects that the spring-boot-starter-web starter packge
+                                    was used, then it will set up all the required stuff for Spring to be able to
+                                    responde to client's requests.
+                                    If in the previous example, Spring Boot would have detected a
+                                    spring-boot-starter-security package, then it would have configured Spring in such a
+                                    way that all the requests for all the endpoints exposed would require credentials.
                                 </p>
                             </section>
                             <section>
                                 <h3>Apache Jena</h3>
                                 <p>
-                                    Apache Jena is an open source library that will be unsed in order to query the DBpedia's sparql endpoint and work with the resources returned by it.
+                                    Apache Jena is an open source library that will be unsed in order to query the
+                                    DBpedia's sparql endpoint and work with the resources returned by it.
                                 </p>
                             </section>
                             <section>
                                 <h3>Bootstrap</h3>
                                 <p>
-                                    Bootstrap is a free and open-source CSS framework directed at responsive, mobile-first front-end web development. It contains CSS- and (optionally) JavaScript-based design templates for typography, forms, buttons, navigation, and other interface components. <br/>
+                                    Bootstrap is a free and open-source CSS framework directed at responsive,
+                                    mobile-first front-end web development. It contains CSS- and (optionally)
+                                    JavaScript-based design templates for typography, forms, buttons, navigation, and
+                                    other interface components. <br />
                                 </p>
                             </section>
                             <section>
                                 <h3>Vue.js</h3>
                                 <p>
-                                    Vue.js is a 
+                                    Vue.js is a
                                 </p>
                             </section>
                             <section>
                                 <h3>H2</h3>
                                 <p>
                                     H2 is a relational databased implemented in Java with a vast set of features.
-                                    H2 has support for all the common features one might expected from a relational database, but it also can be used as an in-memory database, which can speed things up during the development.
-                                    In the project, H2 was used to store user related data, like: credentials, interests, and other profile data.
+                                    H2 has support for all the common features one might expected from a relational
+                                    database, but it also can be used as an in-memory database, which can speed things
+                                    up during the development.
+                                    In the project, H2 was used to store user related data, like: credentials,
+                                    interests, and other profile data.
                                 </p>
                             </section>
                         </div>
@@ -355,22 +512,32 @@
                             <section>
                                 <h3>Nicolae Carcalet</h3>
                                 <ol class="list-group mb-2">
-                                    <li class="list-group-item list-group-item-action list-group-item-secondary">Implemented the main, profile and auth service(Jwt generation)</li>
-                                    <li class="list-group-item list-group-item-action list-group-item-secondary">Wrote the following sections in the documentation file: What is it?, Architecture, Final users(refine), Services, Tech stack(Java, Spring Boot, Apache Jena, and refined the Vue and database subsections)</li>
-                                    <li class="list-group-item list-group-item-action list-group-item-secondary">Initially: Created the open api specification using java annoations and hosted it on swagger hub</li>
-                                    <li class="list-group-item list-group-item-action list-group-item-secondary">Created the Github repo and set up the static page hosting for the documentation file in the said repo</li>
+                                    <li class="list-group-item list-group-item-action list-group-item-secondary">
+                                        Implemented the main, profile and auth service(Jwt generation)</li>
+                                    <li class="list-group-item list-group-item-action list-group-item-secondary">Wrote
+                                        the following sections in the documentation file: What is it?, Architecture,
+                                        Final users(refine), Services, Tech stack(Java, Spring Boot, Apache Jena, and
+                                        refined the Vue and database subsections)</li>
+                                    <li class="list-group-item list-group-item-action list-group-item-secondary">
+                                        Created the open api specification using java annoations and hosted
+                                        it on swagger hub</li>
+                                    <li class="list-group-item list-group-item-action list-group-item-secondary">Created
+                                        the Github repo and set up the static page hosting for the documentation file in
+                                        the said repo</li>
                                 </ol>
                             </section>
                             <section>
                                 <h3>Eduard Ghergheluca</h3>
                                 <ol class="list-group mb-2">
-                                    <li class="list-group-item list-group-item-action list-group-item-secondary">TODO</li>
+                                    <li class="list-group-item list-group-item-action list-group-item-secondary">TODO
+                                    </li>
                                 </ol>
                             </section>
                             <section>
                                 <h3>Daniel Chisa</h3>
                                 <ol class="list-group mb-2">
-                                    <li class="list-group-item list-group-item-action list-group-item-secondary">TODO</li>
+                                    <li class="list-group-item list-group-item-action list-group-item-secondary">TODO
+                                    </li>
                                 </ol>
                             </section>
                         </div>
@@ -384,12 +551,18 @@
                         <h2 class="card-header">References</h2>
                         <div class="card-body">
                             <ol class="list-group">
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">1. http://wikidata.dbpedia.org/OnlineAccess</li>
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">2. https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service/queries/examples</li>
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">3. https://jena.apache.org/</li>
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">4. https://www.w3.org/wiki/LinkedData</li>
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">4. https://www.w3.org/wiki/LinkedData</li>
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">5. https://www.h2database.com/html/main.html</li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">1.
+                                    http://wikidata.dbpedia.org/OnlineAccess</li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">2.
+                                    https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service/queries/examples</li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">3.
+                                    https://jena.apache.org/</li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">4.
+                                    https://www.w3.org/wiki/LinkedData</li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">4.
+                                    https://www.w3.org/wiki/LinkedData</li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">5.
+                                    https://www.h2database.com/html/main.html</li>
                             </ol>
                         </div>
                     </div>
@@ -399,5 +572,6 @@
         </article>
     </div>
 
-    </body>
+</body>
+
 </html>
