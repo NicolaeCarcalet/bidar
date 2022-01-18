@@ -193,7 +193,7 @@
                                     <li class="list-group-item list-group-item-action list-group-item-secondary">2. Main
                                         service</li>
                                     <li class="list-group-item list-group-item-action list-group-item-secondary">3.
-                                        Recommandations service</li>
+                                        Recommendations service</li>
                                     <li class="list-group-item list-group-item-action list-group-item-secondary">4. User
                                         Profile Service</li>
                                 </ol>
@@ -366,7 +366,7 @@
                                     </section>
 
                                     <section>
-                                        <h4>Recommandations service</h4>
+                                        <h4>Recommendations service</h4>
 
                                         <section>
                                             <h5>Overview</h5>
@@ -380,19 +380,15 @@
 
                                         <section>
                                             <h5>Recommandation generation approaches</h5>
-                                            <p>For recommandations the user's history will be taken into account by the
-                                                algorithm that will generate the said recomandations.</p>
-                                            <p>
-                                                There are various algorithms/approaches available, for example:
-                                            <ul class="list-group">
-                                                <li
-                                                    class="list-group-item list-group-item-action list-group-item-secondary">
-                                                    1. A simple rule based apporach</li>
-                                                <li
-                                                    class="list-group-item list-group-item-action list-group-item-secondary">
-                                                    2. Kmeans algorithm</li>
+                                            <p>The recommendations are generated based on the seeAlso label the resources from dbpedia have.</p>
+                                            <p>In other words, the recommendation service will receive a list of: </p>
+                                            <ul>
+                                                <li>Current resources shown to the user</li>
+                                                <li>Interests</li>
+                                                <li>Skills</li>
                                             </ul>
-                                            </p>
+                                            <p>and the service, for each of the said components from above, call the main service in order to get resources from dbpedia which will be displayed to the user as recommended resources. </p>
+                                            <p>When the recommendation service calls the main service, it's input will be formatted in such a way that the resources returned by the main service from dbpedia will be for the triple ([current_resource]|[user_interest][user_skill], rdfs:seeAlso, ?o)</p>
                                         </section>
 
                                         <section>
@@ -513,7 +509,7 @@
                                 <h3>Nicolae Carcalet</h3>
                                 <ol class="list-group mb-2">
                                     <li class="list-group-item list-group-item-action list-group-item-secondary">
-                                        Implemented the main, profile and auth service(Jwt generation)</li>
+                                        Implemented the main(fully), profile(fully), recommendation(fully) and auth service(Jwt generation and general architecture fully)</li>
                                     <li class="list-group-item list-group-item-action list-group-item-secondary">Wrote
                                         the following sections in the documentation file: What is it?, Architecture,
                                         Final users(refine), Services, Tech stack(Java, Spring Boot, Apache Jena, and
