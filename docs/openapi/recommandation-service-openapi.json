@@ -7,26 +7,18 @@
     "servers": [
         {
             "url": "http://localhost:8083",
-            "description": "Generated server url"
+            "description": "Recommendation open api specification"
         }
     ],
     "paths": {
-        "/recommandation": {
-            "get": {
+        "/recommendation": {
+            "post": {
                 "tags": [
                     "recommendation-controller"
                 ],
                 "description": "This will return a list of recommended resources for a given set of resources",
-                "operationId": "getRecommandations",
+                "operationId": "getRecommendations",
                 "parameters": [
-                    {
-                        "name": "recommendationInputDto",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/components/schemas/RecommendationInputDto"
-                        }
-                    },
                     {
                         "name": "Authorization",
                         "in": "header",
@@ -41,15 +33,26 @@
                         }
                     }
                 ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RecommendationInputDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
                 "responses": {
                     "200": {
                         "description": "OK",
                         "content": {
                             "*/*": {
                                 "schema": {
+                                    "uniqueItems": true,
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/ResourceDto"
+                                        "$ref": "#/components/schemas/RecommendationOutputDto"
                                     }
                                 }
                             }
@@ -87,8 +90,11 @@
             "ResourceDto": {
                 "type": "object",
                 "properties": {
-                    "data": {
-                        "type": "object"
+                    "resourceMetadata": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
                     }
                 }
             },
@@ -110,6 +116,14 @@
                         "type": "string"
                     },
                     "skillData": {
+                        "type": "string"
+                    }
+                }
+            },
+            "RecommendationOutputDto": {
+                "type": "object",
+                "properties": {
+                    "recommendationResource": {
                         "type": "string"
                     }
                 }

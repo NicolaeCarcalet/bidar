@@ -6,11 +6,70 @@
     },
     "servers": [
         {
-            "url": "http://localhost:8082",
-            "description": "Generated server url"
+            "url": "http://localhost:8089",
+            "description": "Main service open api specification"
         }
     ],
     "paths": {
+        "/resources": {
+            "post": {
+                "tags": [
+                    "main-controller"
+                ],
+                "description": "This will return all the resources for the given request",
+                "operationId": "getResources",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "The Authorization header is mandatory and its valid must be provide JWT token in the form: Authorization: Bearer + <token>",
+                        "required": true,
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestInputDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ResourceDto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/diff": {
             "post": {
                 "tags": [
@@ -35,11 +94,28 @@
                 ],
                 "requestBody": {
                     "content": {
-                        "application/json": {}
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ResourceDto"
+                                }
+                            }
+                        }
                     },
                     "required": true
                 },
                 "responses": {
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
                     "200": {
                         "description": "OK",
                         "content": {
@@ -52,52 +128,31 @@
                     }
                 }
             }
-        },
-        "/resources": {
-            "get": {
-                "tags": [
-                    "main-controller"
-                ],
-                "description": "This will return all the resources for the given request",
-                "operationId": "getResources",
-                "parameters": [
-                    {
-                        "name": "requestInputDto",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/components/schemas/RequestInputDto"
-                        }
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "The Authorization header is mandatory and its valid must be provide JWT token in the form: Authorization: Bearer + <token>",
-                        "required": true,
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {}
-                    }
-                }
-            }
         }
     },
     "components": {
         "schemas": {
-            "ResourceDiffDto": {
+            "RequestInputDto": {
+                "required": [
+                    "querySubject"
+                ],
                 "type": "object",
                 "properties": {
-                    "diffMetadata": {
+                    "querySubject": {
+                        "type": "string"
+                    },
+                    "queryPredicate": {
+                        "type": "string"
+                    },
+                    "queryObject": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ResourceDto": {
+                "type": "object",
+                "properties": {
+                    "resourceMetadata": {
                         "type": "object",
                         "additionalProperties": {
                             "type": "string"
@@ -105,8 +160,22 @@
                     }
                 }
             },
-            "RequestInputDto": {
-                "type": "object"
+            "ResourceDiffDto": {
+                "type": "object",
+                "properties": {
+                    "uniqueKeys": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "uniqueValues": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
             }
         }
     }

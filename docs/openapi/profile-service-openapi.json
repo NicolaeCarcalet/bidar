@@ -7,7 +7,7 @@
     "servers": [
         {
             "url": "http://localhost:8081",
-            "description": "Generated server url"
+            "description": "Profile service open api specification"
         }
     ],
     "paths": {
@@ -19,6 +19,15 @@
                 "description": "This will return all the user's profile data",
                 "operationId": "getUserProfile",
                 "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
                     {
                         "name": "Authorization",
                         "in": "header",
@@ -34,6 +43,16 @@
                     }
                 ],
                 "responses": {
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
                     "200": {
                         "description": "OK",
                         "content": {
@@ -53,6 +72,15 @@
                 "description": "This will update an user's profile",
                 "operationId": "updateUserProfile",
                 "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
                     {
                         "name": "Authorization",
                         "in": "header",
@@ -78,13 +106,120 @@
                     "required": true
                 },
                 "responses": {
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
                     "200": {
                         "description": "OK"
                     }
                 }
             }
         },
-        "/profile/skill/{userId}/{skillId}": {
+        "/profile": {
+            "post": {
+                "tags": [
+                    "user-profile-controller"
+                ],
+                "operationId": "createProfile",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserProfileDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserProfileDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/profile/skill/{userId}": {
+            "get": {
+                "tags": [
+                    "user-skill-controller"
+                ],
+                "description": "This will return all the skills for an user",
+                "operationId": "getUserSkills",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "The id of the user",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "The Authorization header is mandatory and its valid must be provide JWT token in the form: Authorization: Bearer + <token>",
+                        "required": true,
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/UserSkillDto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "post": {
                 "tags": [
                     "user-skill-controller"
@@ -93,21 +228,13 @@
                 "operationId": "addUserSkills",
                 "parameters": [
                     {
-                        "name": "skillId",
-                        "in": "path",
-                        "description": "The skill id that will be added",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
                         "name": "userId",
                         "in": "path",
                         "description": "The id of the user",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "integer",
+                            "format": "int64"
                         }
                     },
                     {
@@ -124,42 +251,19 @@
                         }
                     }
                 ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserSkillDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
                 "responses": {
-                    "200": {
-                        "description": "OK"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "user-skill-controller"
-                ],
-                "description": "Deletes a skill assigned to an user",
-                "operationId": "deleteUserSkills",
-                "parameters": [
-                    {
-                        "name": "skillId",
-                        "in": "path",
-                        "description": "The skill id that will be deleted",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "userId",
-                        "in": "path",
-                        "description": "The id of the user",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "The Authorization header is mandatory and its valid must be provide JWT token in the form: Authorization: Bearer + <token>",
-                        "required": true,
+                    "404": {
+                        "description": "Not Found",
                         "content": {
                             "*/*": {
                                 "schema": {
@@ -167,16 +271,70 @@
                                 }
                             }
                         }
-                    }
-                ],
-                "responses": {
+                    },
                     "200": {
                         "description": "OK"
                     }
                 }
             }
         },
-        "/profile/interest/{userId}/{interestId}": {
+        "/profile/interest/{userId}": {
+            "get": {
+                "tags": [
+                    "user-interest-controller"
+                ],
+                "description": "This will return all the interest for an user",
+                "operationId": "getUserInterests",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "The Authorization header is mandatory and its valid must be provide JWT token in the form: Authorization: Bearer + <token>",
+                        "required": true,
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/UserInterestDto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "post": {
                 "tags": [
                     "user-interest-controller"
@@ -188,18 +346,15 @@
                         "name": "interestId",
                         "in": "path",
                         "description": "The interest id that will be added",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
+                        "required": true
                     },
                     {
                         "name": "userId",
                         "in": "path",
-                        "description": "The id of the user",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "integer",
+                            "format": "int64"
                         }
                     },
                     {
@@ -216,42 +371,19 @@
                         }
                     }
                 ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserInterestDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
                 "responses": {
-                    "200": {
-                        "description": "OK"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "user-interest-controller"
-                ],
-                "description": "Deletes an interest assigned to an user",
-                "operationId": "deleteUserInterests",
-                "parameters": [
-                    {
-                        "name": "interestId",
-                        "in": "path",
-                        "description": "The interest id that will be deleted",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "userId",
-                        "in": "path",
-                        "description": "The id of the user",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "The Authorization header is mandatory and its valid must be provide JWT token in the form: Authorization: Bearer + <token>",
-                        "required": true,
+                    "404": {
+                        "description": "Not Found",
                         "content": {
                             "*/*": {
                                 "schema": {
@@ -259,9 +391,7 @@
                                 }
                             }
                         }
-                    }
-                ],
-                "responses": {
+                    },
                     "200": {
                         "description": "OK"
                     }
@@ -291,41 +421,8 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/UserSkillDto"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/profile/skill/{userId}": {
-            "get": {
-                "tags": [
-                    "user-skill-controller"
-                ],
-                "description": "This will return all the skills for an user",
-                "operationId": "getUserSkills",
-                "parameters": [
-                    {
-                        "name": "userId",
-                        "in": "path",
-                        "description": "The id of the user",
-                        "required": true
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "The Authorization header is mandatory and its valid must be provide JWT token in the form: Authorization: Bearer + <token>",
-                        "required": true,
+                    "404": {
+                        "description": "Not Found",
                         "content": {
                             "*/*": {
                                 "schema": {
@@ -333,9 +430,7 @@
                                 }
                             }
                         }
-                    }
-                ],
-                "responses": {
+                    },
                     "200": {
                         "description": "OK",
                         "content": {
@@ -375,6 +470,16 @@
                     }
                 ],
                 "responses": {
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
                     "200": {
                         "description": "OK",
                         "content": {
@@ -391,14 +496,33 @@
                 }
             }
         },
-        "/profile/interest/{userId}": {
-            "get": {
+        "/profile/skill/{userId}/{skillId}": {
+            "delete": {
                 "tags": [
-                    "user-interest-controller"
+                    "user-skill-controller"
                 ],
-                "description": "This will return all the interest for an user",
-                "operationId": "getUserInterests",
+                "description": "Deletes a skill assigned to an user",
+                "operationId": "deleteUserSkills",
                 "parameters": [
+                    {
+                        "name": "skillId",
+                        "in": "path",
+                        "description": "The skill id that will be deleted",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "The id of the user",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
                     {
                         "name": "Authorization",
                         "in": "header",
@@ -414,18 +538,77 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "OK",
+                    "404": {
+                        "description": "Not Found",
                         "content": {
                             "*/*": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/UserInterestDto"
-                                    }
+                                    "type": "string"
                                 }
                             }
                         }
+                    },
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/profile/interest/{userId}/{interestId}": {
+            "delete": {
+                "tags": [
+                    "user-interest-controller"
+                ],
+                "description": "Deletes an interest assigned to an user",
+                "operationId": "deleteUserInterests",
+                "parameters": [
+                    {
+                        "name": "interestId",
+                        "in": "path",
+                        "description": "The interest id that will be deleted",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "The id of the user",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "The Authorization header is mandatory and its valid must be provide JWT token in the form: Authorization: Bearer + <token>",
+                        "required": true,
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "OK"
                     }
                 }
             }
@@ -437,7 +620,8 @@
                 "type": "object",
                 "properties": {
                     "interestId": {
-                        "type": "string"
+                        "type": "integer",
+                        "format": "int64"
                     },
                     "interestData": {
                         "type": "string"
@@ -447,6 +631,10 @@
             "UserProfileDto": {
                 "type": "object",
                 "properties": {
+                    "userId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
                     "firstName": {
                         "type": "string"
                     },

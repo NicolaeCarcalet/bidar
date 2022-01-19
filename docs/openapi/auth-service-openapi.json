@@ -7,10 +7,40 @@
     "servers": [
         {
             "url": "http://localhost:8080",
-            "description": "Generated server url"
+            "description": "Auth service open api specification"
         }
     ],
     "paths": {
+        "/register": {
+            "post": {
+                "tags": [
+                    "user-controller"
+                ],
+                "operationId": "registerUser",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserEntity"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/auth": {
             "post": {
                 "tags": [
@@ -44,6 +74,29 @@
     },
     "components": {
         "schemas": {
+            "UserEntity": {
+                "required": [
+                    "password",
+                    "username"
+                ],
+                "type": "object",
+                "properties": {
+                    "userId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "username": {
+                        "maxLength": 20,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "password": {
+                        "maxLength": 20,
+                        "minLength": 1,
+                        "type": "string"
+                    }
+                }
+            },
             "UserCredentials": {
                 "type": "object",
                 "properties": {
