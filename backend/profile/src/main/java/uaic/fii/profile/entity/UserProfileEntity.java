@@ -10,8 +10,6 @@ import javax.persistence.*;
 public class UserProfileEntity {
 
     @Id
-    @GeneratedValue(generator="profileSequence")
-    @SequenceGenerator(name="profileSequence",sequenceName="PROFILE_SEQUENCE", allocationSize=1)
     @Column(name = "user_id", unique = true)
     private Long userId;
 

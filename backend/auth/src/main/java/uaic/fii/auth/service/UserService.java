@@ -11,9 +11,10 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public void register(UserEntity user)
+    public long register(UserEntity user)
     {
-        userRepository.save(user);
+        UserEntity newUser = userRepository.save(user);
+        return newUser.getUserId();
     }
 
     public Boolean passwordsMatched(UserEntity user){

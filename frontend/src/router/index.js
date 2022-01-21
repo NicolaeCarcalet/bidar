@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Login from "../components/Login";
 import Register from "../components/Register";
 import Profile from "../components/Profile";
+import Explorer from "../components/Explorer";
 
 Vue.use(Router)
 
@@ -29,6 +30,11 @@ export default new Router({
       path: '/profile',
       name: 'Profile',
       component: Profile
+    },
+    {
+      path: '/explorer',
+      name: 'Explorer',
+      component: Explorer
     }
   ]
 })

@@ -16,6 +16,9 @@ Vue.use(VueAxios, axios)
 Vue.config.productionTip = false
 
 Vue.prototype.$hostname = 'http://localhost:8080'
+Vue.prototype.$profile = 'http://localhost:8081'
+Vue.prototype.$main = 'http://localhost:8089'
+Vue.prototype.$recommendation = 'http://localhost:8081'
 
 /* eslint-disable no-new */
 new Vue({

@@ -4,55 +4,40 @@
     <!--Container Main start-->
     <div class="height-100 bg-light">
       <div class="container text-center" style="margin-top: 64px">
-        <h4>Profile</h4>
+        <h4>Explorer</h4>
         <div class="row">
-          <div class="col-md-4 text-left">
-            <form>
-              <div class="form-group">
-                <label for="first_name">First Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="first_name"
-                  id="first_name"
-                  placeholder="First name"
-                  v-model="firstName"
-                />
-                <label for="last_name">Last Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="last_name"
-                  id="last_name"
-                  placeholder="Last name"
-                  v-model="lastName"
-                />
-                <label for="country">Country</label>
-                <select class="form-select" v-model="country">
-                  <option value="Germany">Germany</option>
-                  <option value="Switzerland">Switzerland</option>
-                  <option value="Romania">Romania</option>
-                </select>
-                <label for="age">Age</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  name="age"
-                  id="age"
-                  placeholder="Age"
-                  v-model="age"
-                />
-                <button
-                  id="login"
-                  class="btn btn-block login-btn"
-                  type="button"
-                  @click="submit"
-                >
-                  Submit
-                </button>
-              </div>
-            </form>
+          <div class="col">
+            <input
+              type="text"
+              class="form-control"
+              name="search"
+              id="search"
+              placeholder="Explorer dbpedia..."
+              v-model="searchTerm"
+            />
           </div>
+          <div class="col">
+            <button class="btn btn-primary" v-on:click="search">Search</button>
+          </div>
+        </div>
+        <div class="row">
+          <p>Search results {{ resources.length }}</p>
+          <div class="card" v-for="(resource, index) in resources">
+            <div class="card-body">
+              <h5 class="card-title">{{ resource.resourceLabel }}</h5>
+              <p class="card-text">
+                {{ resource.resourceAbstract }}
+              </p>
+              <a href="#" class="btn btn-primary">{{
+                resource.resourceLink
+              }}</a>
+            </div>
+          </div>
+        </div>
+
+        <hr />
+        <div class="row">
+          <p>Recommendations</p>
         </div>
       </div>
     </div>
@@ -62,56 +47,62 @@
 <script>
 import DashboardStructure from "./DashboardStructure";
 export default {
-  name: "Profile",
+  name: "Explorer",
   components: { DashboardStructure },
   data() {
     return {
-      firstName: "",
-      lastName: "",
-      country: "",
-      age: "",
+      searchTerm: "",
+      userProfile: {},
+      resources: [],
     };
   },
   methods: {
-    getUser() {
+    getInitialData() {
       let userId = localStorage.getItem("userId");
-      console.log(userId);
-      this.$http
-        .get(this.$profile + "/profile/" + userId)
-        .then((response) => {
-          let payload = response.data;
-          console.log(payload);
-          this.firstName = payload.firstName;
-          this.lastName = payload.lastName;
-          this.age = payload.age;
-          this.country = payload.country;
-        });
-    },
-
-    submit() {
-      // TODO: Add more countries!!!!!
-      let countryCodes = {
-        "UK": "en",
-        "Germany": "de",
-        "Romania": "ro",
-        "Switzerland": "de"
-      };
+      this.$http.get(this.$profile + "/profile/" + userId).then((response) => {
+        this.userProfile = response.data;
+      });
 
       let payload = {
-        userId: localStorage.getItem("userId"),
-        firstName: this.firstName,
-        lastName: this.lastName,
-        age: this.age,
-        country: countryCodes[this.country]
-      }
-
-      this.$http
-        .post(this.$profile + "/profile", payload)
-        .then((response) => {
-          console.log(response);
+        querySubject: "?s",
+        queryPredicate: "dbo:designer",
+        queryObject: "dbr:James_Gosling",
+        countryCode: this.userProfile.countryCode,
+      };
+      this.$http.post(this.$main + "/resources", payload).then((response) => {
+        let data = response.data;
+        console.log(data);
+        this.resources = data.map((resource) => {
+          return {
+            resourceLink: resource.resourceMetadata.s,
+            resourceLabel: resource.resourceMetadata.label,
+            resourceAbstract: resource.resourceMetadata.abstract,
+          };
         });
+        console.log(this.resources);
+      });
+    },
+
+    search() {
+      let payload = {
+        queryObject: `dbr:${this.searchTerm}`,
+        countryCode: this.userProfile.countryCode,
+      };
+      this.$http.post(this.$main + "/resources", payload).then((response) => {
+        let data = response.data;
+        console.log(data);
+        this.resources = data.map((resource) => {
+          return {
+            resourceLink: resource.resourceMetadata.s,
+            resourceLabel: resource.resourceMetadata.label,
+            resourceAbstract: resource.resourceMetadata.abstract,
+          };
+        });
+        console.log(this.resources);
+      });
     },
   },
+
   created() {
     $("body").attr(
       "style",
@@ -122,7 +113,7 @@ export default {
         "    font-size: var(--normal-font-size);\n" +
         "    transition: .5s"
     );
-    this.getUser();
+    this.getInitialData();
   },
 };
 </script>

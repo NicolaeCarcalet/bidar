@@ -10,8 +10,6 @@ import javax.persistence.*;
 public class UserSkillEntity {
 
     @Id
-    @GeneratedValue(generator="skillsSequence")
-    @SequenceGenerator(name="skillsSequence",sequenceName="SKILLS_SEQUENCE", allocationSize=1)
     @Column(name = "skill_id", nullable = false)
     private Long skillId;
 

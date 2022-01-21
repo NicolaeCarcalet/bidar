@@ -42,7 +42,6 @@ public class UserProfileService {
     public UserProfileDto createUserProfile(UserProfileDto userProfileDto) {
         UserProfileEntity userProfileEntity = userProfileMapper.mapUserProfileDtoToEntity(userProfileDto);
         userProfileRepository.save(userProfileEntity);
-        userProfileDto.setUserId(userProfileEntity.getUserId());
         return userProfileDto;
     }
 

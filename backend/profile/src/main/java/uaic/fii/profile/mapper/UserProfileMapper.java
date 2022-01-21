@@ -25,6 +25,7 @@ public class UserProfileMapper {
 
     public UserProfileEntity mapUserProfileDtoToEntity(UserProfileDto userProfileDto) {
         UserProfileEntity userProfileEntity = new UserProfileEntity();
+        userProfileEntity.setUserId(userProfileDto.getUserId());
         userProfileEntity.setFirstName(userProfileDto.getFirstName());
         userProfileEntity.setLastName(userProfileDto.getLastName());
         userProfileEntity.setAge(userProfileDto.getAge());
