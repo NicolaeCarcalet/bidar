@@ -1,32 +1,34 @@
 <template>
-  <div class="container">
-    <div class="d-flex justify-content-center h-100">
-      <div class="card">
-        <div class="card-header">
-          <h3>Register</h3>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6 login-section-wrapper">
+        <div class="brand-wrapper">
+          <h2>Bidar</h2>
         </div>
-        <div class="card-body">
+        <div class="login-wrapper my-auto">
+          <h1 class="login-title">Register</h1>
           <form>
-            <div class="input-group form-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><v-icon name="key"/></span>
-              </div>
-              <input type="text" class="form-control" placeholder="username" v-model="username">
+            <div class="form-group">
+              <label for="email">Username</label>
+              <input type="email" name="email" id="email" class="form-control" placeholder="username" v-model="username">
             </div>
-            <div class="input-group form-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><v-icon name="key"/></span>
-              </div>
-              <input type="password" class="form-control" placeholder="password" v-model="password">
+            <div class="form-group mb-4">
+              <label for="password">Password</label>
+              <input type="password" name="password" id="password" class="form-control" placeholder="enter your passsword" v-model="password">
             </div>
-            <div class="row align-items-center remember">
-              <!--              <input type="checkbox">Remember Me-->
+            <div class="form-group mb-4" v-if="registerError">
+              <div class="alert alert-danger">{{registerResponseError}}</div>
             </div>
-            <div class="form-group mt-3">
-              <button type="button" class="btn float-right login_btn" @click="register">Register</button>
+            <div class="form-group mb-4" v-if="registerSuccess">
+              <div class="alert alert-success">{{registerResponse}}</div>
             </div>
+            <button id="login" class="btn btn-block login-btn" type="button" @click="register">Register</button>
           </form>
+          <p class="login-wrapper-footer-text">Already have an account? <a style="cursor: pointer;" class="text-reset" @click="goToLogin">Go to Login</a></p>
         </div>
+      </div>
+      <div class="col-sm-6 px-0 d-none d-sm-block">
+        <img src="../assets/login.jpeg" alt="login image" class="login-img">
       </div>
     </div>
   </div>
@@ -34,24 +36,44 @@
 
 <script>
 export default {
-  name: "Register",
+  name: "Login",
   data() {
     return {
       username: '',
-      password: ''
+      password: '',
+      registerError: false,
+      registerSuccess: false,
+      successMsg: false,
+      registerResponseError: '',
+      registerResponse: ''
     }
   },
   methods: {
     register() {
       this.$http.post(this.$hostname + '/register', {username: this.username, password: this.password}).then((response) => {
-        console.log(response);
+        if(response.data === 'User created') {
+          this.registerError = false;
+          this.registerSuccess = true;
+          this.registerResponse = response.data;
+        } else {
+          this.registerError = true;
+          this.registerSuccess = false;
+          this.registerResponseError = response.data;
+        }
+      }).catch((error) => {
+        this.registerError = true;
+        this.registerSuccess = false;
+        this.registerResponseError = error.response.data;
       })
+    },
+    goToLogin() {
+      this.$router.push({name: 'Login'})
     }
   }
 }
 </script>
 
-<style scoped>
+<!--<style scoped>
 html,body{
   background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
   background-size: cover;
@@ -138,4 +160,108 @@ input:focus{
 .links a{
   margin-left: 4px;
 }
+</style>-->
+<style scoped>
+body {
+  font-family: "Karla", sans-serif;
+  background-color: #fff;
+  min-height: 100vh; }
+
+.brand-wrapper {
+  padding-top: 7px;
+  padding-bottom: 8px; }
+.brand-wrapper .logo {
+  height: 25px; }
+
+.login-section-wrapper {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  padding: 68px 100px;
+  background-color: #fff; }
+@media (max-width: 991px) {
+  .login-section-wrapper {
+    padding-left: 50px;
+    padding-right: 50px; } }
+@media (max-width: 575px) {
+  .login-section-wrapper {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    min-height: 100vh; } }
+
+.login-wrapper {
+  width: 300px;
+  max-width: 100%;
+  padding-top: 24px;
+  padding-bottom: 24px; }
+@media (max-width: 575px) {
+  .login-wrapper {
+    width: 100%; } }
+.login-wrapper label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #b0adad; }
+.login-wrapper .form-control {
+  border: none;
+  border-bottom: 1px solid #e7e7e7;
+  border-radius: 0;
+  padding: 9px 5px;
+  min-height: 40px;
+  font-size: 18px;
+  font-weight: normal; }
+.login-wrapper .form-control::-webkit-input-placeholder {
+  color: #b0adad; }
+.login-wrapper .form-control::-moz-placeholder {
+  color: #b0adad; }
+.login-wrapper .form-control:-ms-input-placeholder {
+  color: #b0adad; }
+.login-wrapper .form-control::-ms-input-placeholder {
+  color: #b0adad; }
+.login-wrapper .form-control::placeholder {
+  color: #b0adad; }
+.login-wrapper .login-btn {
+  padding: 13px 20px;
+  background-color: #fdbb28;
+  border-radius: 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 14px; }
+.login-wrapper .login-btn:hover {
+  border: 1px solid #fdbb28;
+  background-color: #fff;
+  color: #fdbb28; }
+.login-wrapper a.forgot-password-link {
+  color: #080808;
+  font-size: 14px;
+  text-decoration: underline;
+  display: inline-block;
+  margin-bottom: 54px; }
+@media (max-width: 575px) {
+  .login-wrapper a.forgot-password-link {
+    margin-bottom: 16px; } }
+.login-wrapper-footer-text {
+  font-size: 16px;
+  color: #000;
+  margin-bottom: 0; }
+
+.login-title {
+  font-size: 30px;
+  color: #000;
+  font-weight: bold;
+  margin-bottom: 25px; }
+
+.login-img {
+  width: 100%;
+  height: 100vh;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: left;
+  object-position: left; }
+
+
+/*# sourceMappingURL=login.css.map */
+
 </style>
