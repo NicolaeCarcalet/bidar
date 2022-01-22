@@ -1,19 +1,17 @@
 package uaic.fii.recommendation.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import uaic.fii.recommendation.mapper.RecommendationResourceMapper;
 import uaic.fii.recommendation.model.*;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class RecommendationService {
 
@@ -29,30 +27,26 @@ public class RecommendationService {
     private String mainServiceSparqlEndpoint;
 
     public Set<RecommendationOutputDto> getRecommendations(RecommendationInputDto recommendationInputDto) {
+        String countryCode = recommendationInputDto.getCountryCode();
         List<ResourceDto> currentResources = recommendationInputDto.getCurrentResources();
-        List<UserSkillDto> userSkills = recommendationInputDto.getUserSkills();
-        List<UserInterestDto> userInterests = recommendationInputDto.getUserInterests();
         List<List<RecommendationOutputDto>> currentResourcesSeeAlsoRecommendations = currentResources
                 .stream()
-                .map(currentResource -> getSeeAlsoRecommendations(currentResource.getResourceMetadata().get("object")))
+                .map(currentResource -> currentResource.getResourceMetadata().get("label"))
+                .filter(Objects::nonNull)
+                .map(currentResource -> getSeeAlsoRecommendations(currentResource, countryCode))
                 .collect(Collectors.toList());
-        List<List<RecommendationOutputDto>> userInterestsSeeAlsoRecommendations = userInterests
-                .stream()
-                .map(userInterest -> getSeeAlsoRecommendations(userInterest.getInterestData()))
-                .collect(Collectors.toList());
-        List<List<RecommendationOutputDto>> userSkillsSeeAlsoRecommendations = userSkills
-                .stream()
-                .map(userSkill -> getSeeAlsoRecommendations(userSkill.getSkillData()))
-                .collect(Collectors.toList());
-        return resourceMapper.mergeRecommendations(currentResourcesSeeAlsoRecommendations, userInterestsSeeAlsoRecommendations, userSkillsSeeAlsoRecommendations);
+        return resourceMapper.flattenRecommendations(currentResourcesSeeAlsoRecommendations);
     }
 
-    public List<RecommendationOutputDto> getSeeAlsoRecommendations(String searchSubject) {
+    public List<RecommendationOutputDto> getSeeAlsoRecommendations(String searchSubject, String countryCode) {
         ResourceRequestInputDto resourceRequestInputDto = ResourceRequestInputDto
                 .builder()
-                .querySubject(searchSubject)
+                .queryObject("?s")
                 .queryPredicate(RECOMMENDATION_SEE_ALSO_QUERY_PREDICATE)
+                .querySubject("dbr:" + searchSubject)
+                .countryCode(countryCode)
                 .build();
+        log.info("Making request for {} {}", searchSubject, resourceRequestInputDto);
         ResourceDto[] seeAlsoRecommendations = restTemplate.postForObject(mainServiceSparqlEndpoint, resourceRequestInputDto, ResourceDto[].class);
         return resourceMapper.mapToRecommendationOutputDtos(Arrays.asList(seeAlsoRecommendations));
     }

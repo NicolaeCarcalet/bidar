@@ -11,6 +11,7 @@ import uaic.fii.main.mapper.ResourceMapper;
 import uaic.fii.main.model.ResourceDto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,9 +50,15 @@ public class DbPediaSparqlService {
     private Integer retryInterval;
 
     public List<ResourceDto> getResources(String resourceOfInterest, String predicate, String object, String countryCode) {
-        String formattedQuery = String.format(DBPEDIA_QUERY_TEMPLATE, resourceOfInterest, predicate, object);
-        Query query = QueryFactory.create(formattedQuery);
-        return getResourcesFromQuery(query, countryCode);
+        try {
+            String formattedQuery = String.format(DBPEDIA_QUERY_TEMPLATE, resourceOfInterest, predicate, object);
+            log.info("Using query {}", formattedQuery);
+            Query query = QueryFactory.create(formattedQuery);
+            return getResourcesFromQuery(query, countryCode);
+        } catch (Exception exception) {
+            log.error("Couldn't get resources", exception);
+            return Collections.emptyList();
+        }
     }
 
     private List<ResourceDto> getResourcesFromQuery(Query query, String countryCode) {

@@ -28,16 +28,24 @@
               <p class="card-text">
                 {{ resource.resourceAbstract }}
               </p>
-              <a href="#" class="btn btn-primary">{{
-                resource.resourceLink
-              }}</a>
+              <a target="_blank" :href='resource.resourceLink' class="btn btn-primary">{{ resource.resourceLink }}</a>
             </div>
           </div>
         </div>
 
         <hr />
         <div class="row">
-          <p>Recommendations</p>
+          <p>Recommendations {{ recommendations.length }}</p>
+          <div class="card" v-for="(resource, index) in recommendations">
+            <div class="card-body">
+              <h5 class="card-title">{{ resource.resourceLabel }}</h5>
+              <p class="card-text">
+                {{ resource.resourceAbstract }}
+              </p>
+              <a target="_blank" :href='resource.resourceLink' class="btn btn-primary">{{ resource.resourceLink }}</a>
+            </div>
+          </div>
+        </div>
         </div>
       </div>
     </div>
@@ -54,6 +62,7 @@ export default {
       searchTerm: "",
       userProfile: {},
       resources: [],
+      recommendations: [],
     };
   },
   methods: {
@@ -98,8 +107,27 @@ export default {
             resourceAbstract: resource.resourceMetadata.abstract,
           };
         });
-        console.log(this.resources);
+        this.getRecommendations(data);
       });
+    },
+
+    getRecommendations(resources) {
+      let payload = {
+        currentResources: resources,
+        countryCode: this.userProfile.countryCode,
+      };
+      this.$http
+        .post(this.$recommendation + "/recommendation", payload)
+        .then((response) => {
+          let data = response.data;
+          this.recommendations = data.map((resource) => {
+            return {
+              resourceLink: resource.recommendationResource,
+              resourceLabel: resource.recommendationLabel,
+              resourceAbstract: resource.recommendationAbstract,
+            };
+          });
+        });
     },
   },
 

@@ -11,7 +11,6 @@ import uaic.fii.recommendation.model.RecommendationInputDto;
 import uaic.fii.recommendation.model.RecommendationOutputDto;
 import uaic.fii.recommendation.service.RecommendationService;
 
-import java.util.List;
 import java.util.Set;
 
 @CrossOrigin
