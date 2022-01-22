@@ -11,4 +11,5 @@ public class RequestInputDto {
     private String queryPredicate;
     private String queryObject;
     private String countryCode;
+    private Integer limit;
 }

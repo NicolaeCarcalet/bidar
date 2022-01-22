@@ -25,6 +25,7 @@ public class ResourceService {
         String queryPredicate = Optional.ofNullable(requestInputDto.getQueryPredicate()).orElse(DEFAULT_PREDICATE_QUERY);
         String queryObject = Optional.ofNullable(requestInputDto.getQueryObject()).orElse(DEFAULT_OBJECT_QUERY);
         String countryCode = Optional.ofNullable(requestInputDto.getCountryCode()).orElse(DEFAULT_COUNTRY_CODE);
-        return dbPediaSparqlService.getResources(querySubject, queryPredicate, queryObject, countryCode);
+        Integer limit = requestInputDto.getLimit();
+        return dbPediaSparqlService.getResources(querySubject, queryPredicate, queryObject, countryCode, limit);
     }
 }

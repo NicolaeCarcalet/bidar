@@ -49,9 +49,12 @@ public class DbPediaSparqlService {
     @Value("${retry.interval}")
     private Integer retryInterval;
 
-    public List<ResourceDto> getResources(String resourceOfInterest, String predicate, String object, String countryCode) {
+    public List<ResourceDto> getResources(String resourceOfInterest, String predicate, String object, String countryCode, Integer limit) {
         try {
             String formattedQuery = String.format(DBPEDIA_QUERY_TEMPLATE, resourceOfInterest, predicate, object);
+            if (limit != null) {
+                formattedQuery += " LIMIT " + limit;
+            }
             log.info("Using query {}", formattedQuery);
             Query query = QueryFactory.create(formattedQuery);
             return getResourcesFromQuery(query, countryCode);
