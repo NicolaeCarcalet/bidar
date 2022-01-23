@@ -4,7 +4,7 @@
     <!--Container Main start-->
     <div class="height-100 bg-light">
         <div class="container text-center" style="margin-top: 64px">
-            <h4>Explorer</h4>
+            <h2>Explorer</h2>
 
             <div class="row justify-content-center">
                 <div class="col-12 col-md-10 col-lg-8">
@@ -31,7 +31,7 @@
         </div>
         <div class="container">
             <div class="row">
-                <p>Search results {{ resources.length }}</p>
+                <h4 class="h4">Search results {{ resources.length }}</h4>
                 <div class="card" v-for="(resource, index) in resources">
                     <div class="card-body">
                         <h5 class="card-title">{{ resource.resourceLabel }}</h5>
@@ -82,25 +82,33 @@ export default {
             let userId = localStorage.getItem("userId");
             this.$http.get(this.$profile + "/profile/" + userId).then((response) => {
                 this.userProfile = response.data;
+                console.log(this.userProfile);
+                for (let skill of this.userProfile.skills) {
+                    this.getResources(skill.skillData);
+                }
+                for (let interest of this.userProfile.interests) {
+                    this.getResources(interest.interestData);
+                }
             });
+        },
 
+        getResources(resource) {
+            console.log(`Retrieving skills resources for ${resource}`);
             let payload = {
-                querySubject: "?s",
-                queryPredicate: "dbo:designer",
-                queryObject: "dbr:James_Gosling",
+                queryObject: `dbr:${resource}`,
                 countryCode: this.userProfile.countryCode,
-                limit: this.limit,
+                limit: 5,
             };
             this.$http.post(this.$main + "/resources", payload).then((response) => {
                 let data = response.data;
-                this.resources = data.map((resource) => {
-                    return {
-                        resourceLink: resource.resourceMetadata.s,
-                        resourceLabel: resource.resourceMetadata.label,
-                        resourceAbstract: resource.resourceMetadata.abstract,
-                    };
-                });
-                console.log(this.resources);
+                console.log(data);
+                for (let userResource of data) {
+                    this.resources.push({
+                        resourceLink: userResource.resourceMetadata.s,
+                        resourceLabel: userResource.resourceMetadata.label,
+                        resourceAbstract: userResource.resourceMetadata.abstract,
+                    });
+                }
             });
         },
 
