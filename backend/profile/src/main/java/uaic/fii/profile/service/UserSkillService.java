@@ -7,6 +7,7 @@ import uaic.fii.profile.mapper.UserSkillMapper;
 import uaic.fii.profile.model.UserSkillDto;
 import uaic.fii.profile.repository.UserSkillRepository;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,12 +35,14 @@ public class UserSkillService {
         return userSkillEntities.stream().map(userSkillMapper::mapSkillEntityToDto).collect(Collectors.toList());
     }
 
-    public void createSkill(Long userId, UserSkillDto userSkillDto) {
+    public UserSkillDto createSkill(Long userId, UserSkillDto userSkillDto) {
         UserSkillEntity userSkillEntity = userSkillMapper.mapSkillDtoToEntity(userId, userSkillDto);
         userSkillRepository.save(userSkillEntity);
+        return userSkillMapper.mapSkillEntityToDto(userSkillEntity);
     }
 
-    public void deleteSkill(Long userId, String skillId) {
-        userSkillRepository.deleteSkillByUserIdAndSkillId(userId, skillId);
+    @Transactional
+    public void deleteSkill(Long userId, Long skillId) {
+        userSkillRepository.deleteAllByUserIdAndSkillId(userId, skillId);
     }
 }

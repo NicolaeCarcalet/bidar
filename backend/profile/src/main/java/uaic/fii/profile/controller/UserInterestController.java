@@ -49,8 +49,8 @@ public class UserInterestController {
             name = "Authorization",
             required = true,
             content = @Content(schema = @Schema(type = "string")))
-    public void addUserInterests(@PathVariable Long userId, @RequestBody UserInterestDto userInterestDto) {
-        userInterestService.createUserInterest(userId, userInterestDto);
+    public UserInterestDto addUserInterests(@PathVariable Long userId, @RequestBody UserInterestDto userInterestDto) {
+        return userInterestService.createUserInterest(userId, userInterestDto);
     }
 
     @DeleteMapping("/profile/interest/{userId}/{interestId}")

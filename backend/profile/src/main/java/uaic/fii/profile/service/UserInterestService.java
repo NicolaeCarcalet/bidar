@@ -8,6 +8,7 @@ import uaic.fii.profile.mapper.UserInterestMapper;
 import uaic.fii.profile.model.UserInterestDto;
 import uaic.fii.profile.repository.UserInterestRepository;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,11 +36,13 @@ public class UserInterestService {
         return userInterestDtos;
     }
 
-    public void createUserInterest(Long userId, UserInterestDto userInterestDto) {
+    public UserInterestDto createUserInterest(Long userId, UserInterestDto userInterestDto) {
         UserInterestEntity userInterestEntity = userInterestMapper.mapUserInterestDtoToEntity(userId, userInterestDto);
         userInterestRepository.save(userInterestEntity);
+        return userInterestMapper.mapUserInterestEntityToDto(userInterestEntity);
     }
 
+    @Transactional
     public void deleteUserInterest(Long userId, Long interestId) {
         userInterestRepository.deleteAllByUserIdAndInterestId(userId, interestId);
     }

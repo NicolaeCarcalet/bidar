@@ -50,8 +50,8 @@ public class UserSkillController {
             name = "Authorization",
             required = true,
             content = @Content(schema = @Schema(type = "string")))
-    public void addUserSkills(@PathVariable Long userId, @RequestBody UserSkillDto userSkillDto) {
-        userSkillService.createSkill(userId, userSkillDto);
+    public UserSkillDto addUserSkills(@PathVariable Long userId, @RequestBody UserSkillDto userSkillDto) {
+        return userSkillService.createSkill(userId, userSkillDto);
     }
 
     @DeleteMapping("/profile/skill/{userId}/{skillId}")
@@ -63,7 +63,7 @@ public class UserSkillController {
             name = "Authorization",
             required = true,
             content = @Content(schema = @Schema(type = "string")))
-    public void deleteUserSkills(@PathVariable Long userId, @PathVariable String skillId) {
+    public void deleteUserSkills(@PathVariable Long userId, @PathVariable Long skillId) {
         userSkillService.deleteSkill(userId, skillId);
     }
 }

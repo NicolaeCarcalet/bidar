@@ -35,7 +35,10 @@
                                 <h4>Skills</h4>
                                 <div class="row" v-if="skills.length > 0">
                                     <ul class="list-group">
-                                        <li class="list-group-item" v-for="(skill, index) in skills"> {{ skill.skillData }}</li>
+                                        <li class="list-group-item" v-for="(skill, index) in skills">
+                                            {{ skill.skillData }}
+                                            <button type="submit" class="btn btn-primary" @click="deleteSkill(index, skill.skillId)">Delete</button>
+                                        </li>
                                     </ul>
                                 </div>
                                 <p class="text-warning" v-if="skills.length == 0">No skills</p>
@@ -54,7 +57,10 @@
                                 <h4>Interests</h4>
                                 <div class="row" v-if="interests.length > 0">
                                     <ul class="list-group">
-                                        <li class="list-group-item" v-for="(interest, index) in interests"> {{ interest.interestData }}</li>
+                                        <li class="list-group-item" v-for="(interest, index) in interests">
+                                            {{ interest.interestData }}
+                                            <button type="submit" class="btn btn-primary" @click="deleteInterest(index, interest.interestId)">Delete</button>
+                                        </li>
                                     </ul>
                                 </div>
                                 <p class="text-warning" v-if="interests.length == 0">No interests</p>
@@ -164,19 +170,49 @@ export default {
                 this.$http.post(this.$profile + "/profile/skill/" + userId, {
                     skillData: this.custom_skill
                 }).then(response => {
-                    this.skills.push(this.custom_skill);
+                    console.log(response);
+                    this.skills.push(response.data);
                 });
             }
         },
+
+        deleteSkill(arrayIndex, skillId) {
+            console.log(`Delete skill ${arrayIndex} ${skillId}`);
+            let userId = localStorage.getItem("userId");
+            this.$http.delete(this.$profile + "/profile/skill/" + userId + "/" + skillId).then(response => {
+                console.log(response.data);
+                this.skills = this.removeByIndex(this.skills, arrayIndex);
+            });
+        },
+
         submitInterests() {
             if (this.custom_interest) {
                 let userId = localStorage.getItem("userId");
                 this.$http.post(this.$profile + "/profile/interest/" + userId, {
                     interestData: this.custom_interest
                 }).then(response => {
-                    this.interests.push(this.custom_interest);
+                    this.interests.push(response.data);
                 });
             }
+        },
+
+        deleteInterest(arrayIndex, interestId) {
+            console.log(`Delete interest ${arrayIndex} ${interestId}`);
+            let userId = localStorage.getItem("userId");
+            this.$http.delete(this.$profile + "/profile/interest/" + userId + "/" + interestId).then(response => {
+                console.log(response.data);
+                this.interests = this.removeByIndex(this.interests, arrayIndex);
+            });
+        },
+
+        removeByIndex(array, index) {
+            let newArray = [];
+            for (let i = 0; i < array.length; i++) {
+                if (i != index) {
+                    newArray.push(array[i]);
+                }
+            }
+            return newArray;
         }
     },
     created() {
