@@ -17,11 +17,11 @@
           </a>
           <div class="nav_list">
             <a href="#" :class="explorerPage ? 'nav_link active' : 'nav_link'">
-              <i class="bx bx-user nav_icon" @click="goToExplorer"></i>
+              <i class="bx bx-book nav_icon" @click="goToExplorer"></i>
               <span class="nav_name">Explorer</span>
             </a>
           </div>
-          <div class="nav_list"> 
+          <div class="nav_list">
             <a href="#" :class="profilePage ? 'nav_link active' : 'nav_link'">
               <i class="bx bx-user nav_icon" @click="goToProfile"></i>
               <span class="nav_name">Profile</span>

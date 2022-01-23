@@ -85,7 +85,7 @@ export default {
           if (response.data !== "User already exists") {
             this.registerError = false;
             this.registerSuccess = true;
-            this.registerResponse = response.data;
+            this.registerResponse = "Account created successfully!";
 
             // TODO: Change me?
             localStorage.setItem("userId", response.data);

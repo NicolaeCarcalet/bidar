@@ -5,10 +5,11 @@
     <div class="height-100 bg-light">
       <div class="container text-center" style="margin-top: 64px">
         <h4>Profile</h4>
-        <div class="row">
+        <div class="row mt-4">
           <div class="col-md-4 text-left">
             <form>
               <div class="form-group">
+                <h4>Profile Details</h4>
                 <label for="first_name">First Name</label>
                 <input
                   type="text"
@@ -44,9 +45,204 @@
                 />
                 <button
                   id="login"
-                  class="btn btn-block login-btn"
+                  class="btn btn-block btn-sm btn-primary mt-2"
                   type="button"
                   @click="submit"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="col-md-4">
+            <form>
+              <div class="form-group">
+                <h4>Skills</h4>
+                <div class="row">
+
+                  <div class="col-md-4">
+                    <div class="col-md-3">
+                      <input class="form-check-input" type="checkbox" value="Adaptability" id="Adaptability" v-model="skills">
+                      <label class="form-check-label" for="Adaptability">
+                        Adaptability
+                      </label>
+                    </div>
+                    <div class="col-md-3">
+                      <input class="form-check-input" type="checkbox" value="Creativity" id="Creativity" v-model="skills">
+                      <label class="form-check-label" for="Creativity">
+                        Creativity
+                      </label>
+                    </div>
+                    <div class="col-md-3">
+                      <input class="form-check-input" type="checkbox" value="Self-motivation" id="Self-motivation" v-model="skills">
+                      <label class="form-check-label" for="Self-motivation">
+                        Self-motivation
+                      </label>
+                    </div>
+                    <div class="col-md-3">
+                      <input class="form-check-input" type="checkbox" value="Empathy" id="Empathy" v-model="skills">
+                      <label class="form-check-label" for="Empathy">
+                        Empathy
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="col-md-3">
+                      <input class="form-check-input" type="checkbox" value="Collaboration" id="Collaboration" v-model="skills">
+                      <label class="form-check-label" for="Collaboration">
+                        Collaboration
+                      </label>
+                    </div>
+                    <div class="col-md-3">
+                      <input class="form-check-input" type="checkbox" value="Positivity" id="Positivity" v-model="skills">
+                      <label class="form-check-label" for="Positivity">
+                        Positivity
+                      </label>
+                    </div>
+                    <div class="col-md-3">
+                      <input class="form-check-input" type="checkbox" value="Leadership" id="Leadership" v-model="skills">
+                      <label class="form-check-label" for="Leadership">
+                        Leadership
+                      </label>
+                    </div>
+                    <div class="col-md-3">
+                    <input class="form-check-input" type="checkbox" value="Time management" id="Time management" v-model="skills">
+                    <label class="form-check-label" for="Time management">
+                      Time management
+                    </label>
+                  </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="col-md-3">
+                      <input class="form-check-input" type="checkbox" value="Communication" id="Communication" v-model="skills">
+                      <label class="form-check-label" for="Communication">
+                        Communication
+                      </label>
+                    </div>
+                    <div class="col-md-3">
+                      <input class="form-check-input" type="checkbox" value="Work ethic" id="Work ethic" v-model="skills">
+                      <label class="form-check-label" for="Work ethic">
+                        Work ethic
+                      </label>
+                    </div>
+                    <div class="col-md-3">
+                      <input class="form-check-input" type="checkbox" value="Multitasking" id="Multitasking" v-model="skills">
+                      <label class="form-check-label" for="Multitasking">
+                        Multitasking
+                      </label>
+                    </div>
+                    <div class="col-md-3">
+                      <input class="form-check-input" type="checkbox" value="Problem solving" id="Problem solving" v-model="skills">
+                      <label class="form-check-label" for="Problem solving">
+                        Problem solving
+                      </label>
+                    </div>
+                  </div>
+                  <input id="custom_skill" type="text" class="form-control mt-3" placeholder="custom skill" v-model="custom_skill">
+                </div>
+                <button
+                  id="submit-skills"
+                  class="btn btn-block btn-sm btn-primary mt-2"
+                  type="button"
+                  @click="submitSkills"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="col-md-4">
+            <form>
+              <div class="form-group">
+                <h4>Interests</h4>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="col-md-3">
+                      <input class="form-check-input" type="checkbox" value="Music" id="Music" v-model="interests">
+                      <label class="form-check-label" for="Music">
+                        Music
+                      </label>
+                    </div>
+                    <div class="col-md-3">
+                      <input class="form-check-input" type="checkbox" value="Art" id="Art" v-model="interests">
+                      <label class="form-check-label" for="Art">
+                        Art
+                      </label>
+                    </div>
+                    <div class="col-md-3">
+                      <input class="form-check-input" type="checkbox" value="Foreign languages" id="Foreign languages" v-model="interests">
+                      <label class="form-check-label" for="Foreign languages">
+                        Foreign languages
+                      </label>
+                    </div>
+                    <div class="col-md-3">
+                      <input class="form-check-input" type="checkbox" value="Soccer" id="Soccer" v-model="interests">
+                      <label class="form-check-label" for="Soccer">
+                        Soccer
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="col-md-3">
+                      <input class="form-check-input" type="checkbox" value="Gaming" id="Gaming" v-model="interests">
+                      <label class="form-check-label" for="Gaming">
+                        Gaming
+                      </label>
+                    </div>
+                    <div class="col-md-3">
+                      <input class="form-check-input" type="checkbox" value="Nature" id="Nature" v-model="interests">
+                      <label class="form-check-label" for="Nature">
+                        Nature
+                      </label>
+                    </div>
+                    <div class="col-md-3">
+                      <input class="form-check-input" type="checkbox" value="Research" id="Research" v-model="interests">
+                      <label class="form-check-label" for="Research">
+                        Research
+                      </label>
+                    </div>
+                    <div class="col-md-3">
+                      <input class="form-check-input" type="checkbox" value="Volleyball" id="Volleyball" v-model="interests">
+                      <label class="form-check-label" for="Volleyball">
+                        Volleyball
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="col-md-3">
+                      <input class="form-check-input" type="checkbox" value="Travel" id="Travel" v-model="interests">
+                      <label class="form-check-label" for="Travel">
+                        Travel
+                      </label>
+                    </div>
+                    <div class="col-md-3">
+                      <input class="form-check-input" type="checkbox" value="Social causes" id="Social causes" v-model="interests">
+                      <label class="form-check-label" for="Social causes">
+                        Social causes
+                      </label>
+                    </div>
+                    <div class="col-md-3">
+                      <input class="form-check-input" type="checkbox" value="History" id="History" v-model="interests">
+                      <label class="form-check-label" for="History">
+                        History
+                      </label>
+                    </div>
+                    <div class="col-md-3">
+                      <input class="form-check-input" type="checkbox" value="Badminton" id="Badminton" v-model="interests">
+                      <label class="form-check-label" for="Badminton">
+                        Badminton
+                      </label>
+                    </div>
+                  </div>
+                  <input id="custom_interest" type="text" class="form-control mt-3" placeholder="custom interest" style="margin-left: 10px;" v-model="custom_interest">
+                </div>
+                <button
+                  id="submit-interests"
+                  class="btn btn-block btn-sm btn-primary mt-2"
+                  type="button"
+                  @click="submitInterests"
                 >
                   Submit
                 </button>
@@ -70,6 +266,10 @@ export default {
       lastName: "",
       country: "",
       age: "",
+      skills: [],
+      custom_skill: "",
+      interests: [],
+      custom_interest: ""
     };
   },
   methods: {
@@ -84,7 +284,17 @@ export default {
           this.firstName = payload.firstName;
           this.lastName = payload.lastName;
           this.age = payload.age;
-          this.country = payload.country;
+          switch (payload.country) {
+            case "de":
+              this.country = "Germany";
+              break;
+            case "ro":
+              this.country = "Romania";
+              break;
+            case "sw":
+              this.country = "Switzerland";
+          }
+
         });
     },
 
@@ -111,6 +321,17 @@ export default {
           console.log(response);
         });
     },
+
+    submitSkills() {
+      if(this.custom_skill) {
+        this.skills.push(this.custom_skill);
+      }
+    },
+    submitInterests() {
+      if(this.custom_interest) {
+        this.interests.push(this.custom_interest);
+      }
+    }
   },
   created() {
     $("body").attr(
@@ -310,5 +531,8 @@ a {
     margin-left: 140px;
     transition: 0.5s;
   }
+}
+.form-check-label {
+  white-space: nowrap;
 }
 </style>
