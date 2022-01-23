@@ -10,6 +10,8 @@ import javax.persistence.*;
 public class UserInterestEntity {
 
     @Id
+    @GeneratedValue(generator="interestSequence")
+    @SequenceGenerator(name="interestSequence",sequenceName="INTEREST_SEQUENCE", allocationSize=1)
     @Column(name = "interest_id", unique = true)
     private Long interestId;
 
