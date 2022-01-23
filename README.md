@@ -9,7 +9,7 @@ The open api specification files can be found in 'docs/openapi'.
 Nicolae Carcalet  
 #### Backend Work
 * Implemented the main(fully), profile(fully), recommendation(fully) and auth service(Jwt generation and general architecture fully)
-* Wrote the following sections in the documentation file: What is it?, Architecture, Final users(refine), Services, Tech stack(Java, Spring Boot, Apache Jena, and  refined the Vue and database subsections)
+* Wrote the following sections in the documentation file: What is it?, FrontEnd, Architecture, Final users(refine), Services, Tech stack(Java, Spring Boot, Apache Jena, VueJS, H2)
 * Created the open api specification using java annoation
 * Created the Github repo and set up the static page hosting for the documentation file in the said repo
 #### Frontend work

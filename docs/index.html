@@ -221,14 +221,14 @@
                                         product. They can access the services offered by our application.
                                     </p>
                                     <p>
-                                        A person passionate about art who can easily visualize artistic elements in the
+                                        For example, a person passionate about art who can easily visualize artistic elements in the
                                         form of images from a wide range of representations. It provides access to a
                                         large comprehensive database through the search engine. You can configure the
                                         artistic fields of interest in a simple way based on keywords and the
                                         application provides relevant recommendations about the desired art.
                                     </p>
                                     <p>
-                                        A programmer who develops an art-based application and finds our approach
+                                        In addition, a programmer who develops an art-based application and finds our approach
                                         appropriate as a way to integrate as a service exposed by our api. The
                                         application can also contain elements that inspire him in developing a similar
                                         application.
@@ -238,26 +238,110 @@
                                     <h3>Data</h3>
                                     <p>
                                         The main source of data for the application is DBpedia.
-                                        The data will be retrieved from DBpedia by calling the sparql endpoint exposed
-                                        by it.
+                                    </p>
+                                    <p>
+                                        The data will be retrieved from DBpedia by calling the sparql endpoint exposed progamatically using the Apache Jena library.
+                                    </p>
+                                    <p>
+                                        The data will be retrieved by using parametrized sparql queries built in the backend services and sent to the data source by apache jena and then by parsing the results in order to gather even more information for each resource that was retrieved using the initial query, namely:
+                                        <ol>
+                                            <li>Resource's label</li>
+                                            <li>Resource's abstract</li>
+                                        </ol>
+                                        that will make up the overview the user will see about each resource
                                     </p>
                                 </section>
 
                                 <section>
                                     <h3>Front-end</h3>
                                     <p>
-                                        The application front-end will be implemented in Vue.js and will be styled with
-                                        bootstrap. The data will be extracted through AJAX requests and rendered in
-                                        different pages to be used in different scenarios such as filtering, searching,
-                                        customizing etc.
+                                        The application front-end is implemented in Vue.js and is styled with bootstrap in order to provide the best UX and customer friendly experience.
+                                        Also, it's worth pointing out that the frontend application is <abbr>SPA</abbr>, and a side bar with the available options is presented to the user in order to allow him to navigate to the different options and features provided by the application.
+                                        On a more technical side of things, the interaction between the frontend side and the backend side is done through AJAX requests which are handled by the backend, and once a response is received, the forntend will update the current page accordingly
                                     </p>
+                                    <p>
+                                        The frontend application is made up of the following components:
+                                        <ol>
+                                            <li>Authentication/Registration</li>
+                                            <li>
+                                                Main UI:
+                                                <ul>
+                                                    <li>Navigation</li>
+                                                    <li>Profile</li>
+                                                    <li>Explore</li>
+                                                </ul>
+                                            </li>
+                                        </ol>
+                                    </p>
+                                    <section>
+                                        <h4>Authentication/Registration</h4>
+                                        <p>The authentication/Registraction allows the user to enter his username/password combination in order to access the application, or create a new account if he isn't already on the platform</p>
+                                    </section>
+                                    <section>
+                                        <h4>Main UI - Navigation</h4>
+                                        <p>Since the frontend application is a SPA, the current page is updated based on the route take by the user through the navigation panel. The navigation is done, as stated above, through a side bar, which updated it's layout based on the current screen's dimensions in order to allow the user to use the application even on devices with smaller screens, e.g: smartphone</p>
+                                        <div class="row">
+                                            <div class="col">
+                                                <figure typeof="sa:Image">
+                                                    <img src="./sidebar.PNG" class="col" alt="How the side bar that provides the navigation capabilities of the application is looking like">
+                                                    <figcaption>This image shows how the sidebar can be used to navigate between the different features provided by the application</figcaption>
+                                                </figure>
+                                            </div>
+                                            <div class="col">
+                                                <figure typeof="sa:Image">
+                                                    <img src="./sidebar_retracted.PNG" class="col" alt="How the side bar updates based on the screen size">
+                                                    <figcaption>This image shows how the sidebar updates based on the screen real-estate that's available</figcaption>
+                                                </figure>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <section>
+                                        <h4>Main UI - Profile</h4>
+                                        <p>
+                                            The profile section of the frontend application allows the user to update his first name, last name, age, country and his interests and skills
+                                            For the interests and skills side of things, a list will be dynamically generated based on the data returned by the backend application for the current user. 
+                                            Also, the application allows the user to add new skills/interests and to delete current ones if he's not happy with them or if he's not interested in them anymore. 
+                                            Moreover, the application will display a warning text if the user hasn't enetered any skills or interests
+                                        </p>
+                                        <figure typeof="sa:Image">
+                                            <img src="./profile.PNG" class="col" alt="How the user can use the profile section to update his metadata">
+                                            <figcaption>This image shows how the user can use the profile section to update his metadata</figcaption>
+                                        </figure>
+                                    </section>
+                                    <section>
+                                        <h4>Main UI - Explorer</h4>
+                                        <p>
+                                            The explore section of the frontend application allows the user to search dbpedia for new resources, but also to see the resoruces the system returned for his current set of skills and interests.
+                                            In addition, this section will have, at the bottom of the page, all the resources the system recommends for the user based on his metadata and based on the current resources too.
+                                            As a small UX touch, this section displays the number of search results and the number of resources shown as recommendation to the user.
+                                        </p>
+                                        <p>
+                                            For each resource, a card like structure will be rendered, show:
+                                            <ul>
+                                                <li>A label</li>
+                                                <li>Resource's abstract</li>
+                                                <li>A link to the dbpedia for that specific resource</li>
+                                            </ul>
+                                        </p>
+                                        <figure typeof="sa:Image">
+                                            <img src="./explorer.PNG" class="col" alt="How the resources retrieved from dbpedia are rendered">
+                                            <figcaption>This image shows how the resources retrieved from dbpedia are rendered</figcaption>
+                                        </figure>
+                                        <p>Also, the user has the possibility to limit the number of resources by choosing from a predefined list of limits that can be applied to the search</p>
+                                        <figure typeof="sa:Image">
+                                            <img src="./explorer_limits.PNG" class="col" alt="How the number of search results can be limited">
+                                            <figcaption>This image shows how the number of search results can be limited</figcaption>
+                                        </figure>
+                                    </section>
                                 </section>
 
                                 <section>
                                     <h3>Database</h3>
                                     <p>
-                                        The application will use a relational database, H2, in order to save user's
-                                        profile data.
+                                        In order to make the application work, the user's metadata(skills, interests and location/age/name) will be stored in a relational database
+                                    </p>
+                                    <p>
+                                        In our case, we chose to use H2 database since it's the it's interoperability with Java is very good and because we won't expect the users to give us a lot of metadata, and therefor a full-blown relational database server like MySql, Oracle or Postgresql would have results in an overengineered application.
                                     </p>
                                 </section>
 
@@ -268,7 +352,7 @@
                                         <h4>Authentication service</h4>
                                         <p>
                                             This service will check the user's credentials in order to make sure he is
-                                            an already existing customer of the platform.
+                                            an already existing customer of the platform. If the user is a new one, the application allows the user to generate an account by using an username/password combination.
                                         </p>
                                         <p>
                                             From a technical point of view, this service will work using JWT token. The
@@ -292,25 +376,20 @@
                                         <section>
                                             <h5>Overview</h5>
                                             <p>
-                                                This service, through the endpoints it will expose, will provide the
-                                                main functionality of the platform.
-                                                The said endpoints will provide a REST interface that the front-end
-                                                component can interact with through HTTP calls in order to allow the
-                                                user to interact with the web application.
-                                            </p>
-                                            <p>
-                                                Furthermore, all the requests that will be made to this service will be
-                                                checked for the JWT token that is mandatory.
-                                                In case the token isn't present, the request will be rejected.
+                                                This service, through the endpoints it will expose, will provide the main functionality for the frontend part.
                                             </p>
                                         </section>
 
                                         <section>
                                             <h5>Functionality</h5>
                                             <p>
-                                                One of the features that will be provided by this service is the ability
-                                                of retrieving, from the database, all the information of interest for
-                                                the user based on it's metadata and interests.
+                                                The resource gathering implementation for the said endpoint is generic, allowing the frontend to build the subject, predicate or object of the request that will be made to the DBpedia's sparql endpoint as it sees fit.
+                                            </p>
+                                            <p>For each resource that's returned by dbpedia, the implementation for this endpoin will make another two requests in an attempt to retrieve the abstract and label for that specific resource, which will be used by the frontend application to generate an overview of the said resource.</p>
+                                            <p>
+                                                Furthermore, all the requests that will be made to this service will be
+                                                checked for the JWT token that is mandatory.
+                                                In case the token isn't present, the request will be rejected.
                                             </p>
                                             <p>
                                                 Another feature provided by this service is represented by the
@@ -349,19 +428,21 @@
                                                 age</li>
                                             <li
                                                 class="list-group-item list-group-item-action list-group-item-secondary">
-                                                2. In what language he wants the results to be displayed</li>
+                                                2. Add, remove its area of interest</li>
                                             <li
                                                 class="list-group-item list-group-item-action list-group-item-secondary">
-                                                3. Add, remove or update its area of interest</li>
-                                            <li
-                                                class="list-group-item list-group-item-action list-group-item-secondary">
-                                                4. Add, remove or update its area of skills</li>
+                                                3. Add, remove its area of skills</li>
                                         </ul>
-                                        All this service's input will be validated for correctness(basically, the
-                                        skills, interests and so on should be choosen from a predfined liet displayed by
-                                        the frontend application)
-                                        As with the other services, each request will be validated by checking that the
-                                        JWT token is present in it.
+                                        </p>
+                                        <p>
+                                            All this metadata inserted by the user: location, skills and interests will be used by the application to retrieve the resources that will be shown to the user.
+                                            As described in the architecture, the application, when first loading the page that lets the user explore the dbpedia resources, will gather all the relevant resources based on the user's defined skills and interests.
+                                        </p>
+                                        <p>
+                                            NOTE: In order to overcame the scalability issues of DBpedia's sparql API, for each skill/interest the application will retrieve only five resources.
+                                        </p>
+                                        <p>
+                                            As with the other services, each request will be validated by checking that the JWT token is present in it.
                                         </p>
                                     </section>
 
@@ -381,13 +462,8 @@
                                         <section>
                                             <h5>Recommandation generation approaches</h5>
                                             <p>The recommendations are generated based on the seeAlso label the resources from dbpedia have.</p>
-                                            <p>In other words, the recommendation service will receive a list of: </p>
-                                            <ul>
-                                                <li>Current resources shown to the user</li>
-                                                <li>Interests</li>
-                                                <li>Skills</li>
-                                            </ul>
-                                            <p>and the service, for each of the said components from above, call the main service in order to get resources from dbpedia which will be displayed to the user as recommended resources. </p>
+                                            <p>In other words, the recommendation service will receive a list of the current resources that are already shown to the user and which were generated by using the interests and skills metadata or by a previoys query.</p>
+                                            <p>For each of the received resource from the frontend the service will call the main service in order to get resources from dbpedia which will be displayed to the user as recommended resources. </p>
                                             <p>When the recommendation service calls the main service, it's input will be formatted in such a way that the resources returned by the main service from dbpedia will be for the triple ([current_resource]|[user_interest][user_skill], rdfs:seeAlso, ?o)</p>
                                         </section>
 
@@ -468,6 +544,11 @@
                                     Apache Jena is an open source library that will be unsed in order to query the
                                     DBpedia's sparql endpoint and work with the resources returned by it.
                                 </p>
+                                <p>
+                                    In addition to the said capabilities of Apache Jena to interogate a sparql endpoint, the bidar application takes full advaantage of the parsing capabilities of Apache Jena too. 
+                                    For example, for every request made to dbpedia, Apache Jena is used to extract the data from the response in order for the application to be able to build the final response that will be send to the user. 
+                                    Moreover, the way the response is parsed allows the backend service to extract all the data for each resource, regardless of the number of variables for a specific resource.
+                                </p>
                             </section>
                             <section>
                                 <h3>Bootstrap</h3>
@@ -481,7 +562,9 @@
                             <section>
                                 <h3>Vue.js</h3>
                                 <p>
-                                    Vue.js is a
+                                    VueJS is a javascript framework that can be used to build web applications in a more maintainable way thanks to the fact that it supports components.
+                                    The Bidar application thanks full advantage of the components capabilities of this framework, and breaks the UI into seperate, manageble pieces that were joined together in order to produce the final results.
+                                    Another feature of VueJS that was used in the application was the two-way data binding that allows the application to react to every change initiated by the user, e.g: when a new search is done by the user to update the resources based on the newly found ones which were returned by the main service.
                                 </p>
                             </section>
                             <section>
@@ -510,16 +593,13 @@
                                 <ol class="list-group mb-2">
                                     <li class="list-group-item list-group-item-action list-group-item-secondary">
                                         Implemented the main(fully), profile(fully), recommendation(fully) and auth service(Jwt generation and general architecture fully)</li>
-                                    <li class="list-group-item list-group-item-action list-group-item-secondary">Wrote
-                                        the following sections in the documentation file: What is it?, Architecture,
-                                        Final users(refine), Services, Tech stack(Java, Spring Boot, Apache Jena, and
-                                        refined the Vue and database subsections)</li>
+                                    <li class="list-group-item list-group-item-action list-group-item-secondary">Wrote the following sections in the documentation file: What is it?, FrontEnd, Architecture, Final users(refine), Services, Tech stack(Java, Spring Boot, Apache Jena, VueJS, H2)</li>
                                     <li class="list-group-item list-group-item-action list-group-item-secondary">
-                                        Created the open api specification using java annoations and hosted
-                                        it on swagger hub</li>
-                                    <li class="list-group-item list-group-item-action list-group-item-secondary">Created
-                                        the Github repo and set up the static page hosting for the documentation file in
-                                        the said repo</li>
+                                        Created the open api specification using java annoation</li>
+                                    <li class="list-group-item list-group-item-action list-group-item-secondary">Created the Github repo and set up the static page hosting for the documentation file in the said repo</li>
+                                    <li class="list-group-item list-group-item-action list-group-item-secondary">Implemented the Explorer page FULLY</li>
+                                    <li class="list-group-item list-group-item-action list-group-item-secondary">Implemented the profile page(profile, skills and interests)</li>
+                                    <li class="list-group-item list-group-item-action list-group-item-secondary">Finished the integration between the login and the auth service</li>
                                 </ol>
                             </section>
                             <section>
@@ -552,12 +632,14 @@
                                 <li class="list-group-item list-group-item-action list-group-item-secondary">2.
                                     https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service/queries/examples</li>
                                 <li class="list-group-item list-group-item-action list-group-item-secondary">3.
-                                    https://jena.apache.org/</li>
+                                    https://jena.apache.org/tutorials/rdf_api.html</li>
                                 <li class="list-group-item list-group-item-action list-group-item-secondary">4.
-                                    https://www.w3.org/wiki/LinkedData</li>
-                                <li class="list-group-item list-group-item-action list-group-item-secondary">4.
-                                    https://www.w3.org/wiki/LinkedData</li>
+                                    https://jena.apache.org/tutorials/sparql.html</li>
                                 <li class="list-group-item list-group-item-action list-group-item-secondary">5.
+                                    https://vuejs.org/v2/guide/</li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">6.
+                                    https://www.w3.org/wiki/LinkedData</li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">7.
                                     https://www.h2database.com/html/main.html</li>
                             </ol>
                         </div>
