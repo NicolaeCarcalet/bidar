@@ -28,50 +28,78 @@
                         </div>
                     </form>
                 </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <form>
-                            <div class="form-group">
-                                <h4>Skills</h4>
-                                <div class="row" v-if="skills.length > 0">
-                                    <ul class="list-group">
-                                        <li class="list-group-item" v-for="(skill, index) in skills">
-                                            {{ skill.skillData }}
-                                            <button type="submit" class="btn btn-primary" @click="deleteSkill(index, skill.skillId)">Delete</button>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <p class="text-warning" v-if="skills.length == 0">No skills</p>
-                                <input id="custom_skill" type="text" class="form-control mt-3" placeholder="Add your skill" v-model="custom_skill">
-                                <button id="submit-skills" class="btn btn-block btn-sm btn-primary mt-2" type="button" @click="submitSkills">
-                                    Submit
-                                </button>
-                            </div>
-                        </form>
+              <div class="col-md-4">
+                <form>
+                  <div class="form-group">
+                    <h4>Skills</h4>
+                    <div class="skills-alert" v-if="skills.length === 0">
+                      <label style="opacity: 0;">test label</label>
+                      <div class="alert alert-warning alert-custom">No skills found</div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <form>
-                            <div class="form-group">
-                                <h4>Interests</h4>
-                                <div class="row" v-if="interests.length > 0">
-                                    <ul class="list-group">
-                                        <li class="list-group-item" v-for="(interest, index) in interests">
-                                            {{ interest.interestData }}
-                                            <button type="submit" class="btn btn-primary" @click="deleteInterest(index, interest.interestId)">Delete</button>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <p class="text-warning" v-if="interests.length == 0">No interests</p>
-                                <input id="custom_interest" type="text" class="form-control mt-3" placeholder="Add your interest" v-model="custom_interest">
-                                <button id="submit-interest" class="btn btn-block btn-sm btn-primary mt-2" type="button" @click="submitInterests">
-                                    Submit
-                                </button>
-                            </div>
-                        </form>
+                    <div class="row" v-if="skills.length > 0">
+                      <label style="opacity: 0;">test label</label>
                     </div>
-                </div>
+                    <table class="table table-bordered table-responsive table-striped table-hover table-sm" v-if="skills.length > 0">
+                      <thead>
+                        <tr>
+                          <th>Skill</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <template v-for="(skill, index) in skills">
+                          <tr class="table-light">
+                            <td>{{skill.skillData}}</td>
+                            <td>
+                              <button type="button" class="btn btn-sm btn-danger" @click="deleteSkill(index, skill.skillId)">Delete</button>
+                            </td>
+                          </tr>
+                        </template>
+                      </tbody>
+                    </table>
+                      <input id="custom_skill" type="text" class="form-control mt-4" placeholder="Add your skill" v-model="custom_skill">
+                      <button id="submit-skills" class="btn btn-sm btn-primary mt-2" type="button" @click="submitSkills">
+                        Submit
+                      </button>
+                  </div>
+                </form>
+              </div>
+              <div class="col-md-4">
+                <form>
+                  <div class="form-group">
+                    <h4>Interests</h4>
+                    <div class="interests-warning" v-if="interests.length == 0">
+                      <label style="opacity: 0;">test label</label>
+                      <div class="alert alert-warning alert-custom">No interests found</div>
+                    </div>
+                    <div class="row" v-if="interests.length > 0">
+                      <label style="opacity: 0;">test label</label>
+                    </div>
+                    <table class="table table-bordered table-responsive table-striped table-hover table-sm" v-if="interests.length > 0">
+                      <thead>
+                      <tr>
+                        <th>Interest</th>
+                        <th>Actions</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <template v-for="(interest, index) in interests">
+                        <tr class="table-light">
+                          <td>{{interest.interestData}}</td>
+                          <td>
+                            <button type="button" class="btn btn-sm btn-danger" @click="deleteInterest(index, interest.interestId)">Delete</button>
+                          </td>
+                        </tr>
+                      </template>
+                      </tbody>
+                    </table>
+                    <input id="custom_interest" type="text" class="form-control mt-4" placeholder="Add your interest" v-model="custom_interest">
+                    <button id="submit-interest" class="btn btn-block btn-sm btn-primary mt-2" type="button" @click="submitInterests">
+                      Submit
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
         </div>
     </div>
@@ -170,7 +198,7 @@ export default {
                 this.$http.post(this.$profile + "/profile/skill/" + userId, {
                     skillData: this.custom_skill
                 }).then(response => {
-                    console.log(response);
+                    this.custom_skill = '';
                     this.skills.push(response.data);
                 });
             }
@@ -191,6 +219,7 @@ export default {
                 this.$http.post(this.$profile + "/profile/interest/" + userId, {
                     interestData: this.custom_interest
                 }).then(response => {
+                    this.custom_interest = '';
                     this.interests.push(response.data);
                 });
             }
@@ -419,5 +448,11 @@ a {
 
 .form-check-label {
     white-space: nowrap;
+}
+.alert-custom {
+  height: 6vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
