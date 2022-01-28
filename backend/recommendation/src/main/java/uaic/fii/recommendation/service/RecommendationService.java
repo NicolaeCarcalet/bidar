@@ -46,7 +46,7 @@ public class RecommendationService {
                 .querySubject("dbr:" + searchSubject)
                 .countryCode(countryCode)
                 .build();
-        log.info("Making request for {} {}", searchSubject, resourceRequestInputDto);
+//        log.info("Making request for {} {}", searchSubject, resourceRequestInputDto);
         ResourceDto[] seeAlsoRecommendations = restTemplate.postForObject(mainServiceSparqlEndpoint, resourceRequestInputDto, ResourceDto[].class);
         return resourceMapper.mapToRecommendationOutputDtos(Arrays.asList(seeAlsoRecommendations));
     }

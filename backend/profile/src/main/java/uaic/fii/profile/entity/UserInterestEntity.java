@@ -10,8 +10,7 @@ import javax.persistence.*;
 public class UserInterestEntity {
 
     @Id
-    @GeneratedValue(generator="interestSequence")
-    @SequenceGenerator(name="interestSequence",sequenceName="INTEREST_SEQUENCE", allocationSize=1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "interest_id", unique = true)
     private Long interestId;
 

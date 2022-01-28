@@ -12,7 +12,7 @@
 	<artifactId>main</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>main</name>
-	<description>User Profile Service</description>
+	<description>Main Service</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -55,6 +55,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-gcp-starter</artifactId>
+			<version>1.2.8.RELEASE</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -69,6 +75,15 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>appengine-maven-plugin</artifactId>
+				<version>2.2.0</version>
+				<configuration>
+					<version>1</version>
+					<projectId>wade-339321</projectId>
 				</configuration>
 			</plugin>
 		</plugins>

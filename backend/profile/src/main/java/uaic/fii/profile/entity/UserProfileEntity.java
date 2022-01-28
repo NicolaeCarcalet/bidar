@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class UserProfileEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id", unique = true)
     private Long userId;
 

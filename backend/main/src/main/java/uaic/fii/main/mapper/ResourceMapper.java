@@ -23,7 +23,7 @@ public class ResourceMapper {
             }
             return Optional.of(resourceDto);
         } catch (Exception exception) {
-            log.error("Failed to map resource {}", querySolution, exception);
+//            log.error("Failed to map resource {}", querySolution, exception);
         }
         return Optional.empty();
     }

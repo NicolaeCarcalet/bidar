@@ -55,11 +55,11 @@ public class DbPediaSparqlService {
             if (limit != null) {
                 formattedQuery += " LIMIT " + limit;
             }
-            log.info("Using query {}", formattedQuery);
+//            log.info("Using query {}", formattedQuery);
             Query query = QueryFactory.create(formattedQuery);
             return getResourcesFromQuery(query, countryCode);
         } catch (Exception exception) {
-            log.error("Couldn't get resources", exception);
+//            log.error("Couldn't get resources", exception);
             return Collections.emptyList();
         }
     }
@@ -81,7 +81,7 @@ public class DbPediaSparqlService {
                 resourceDto.ifPresent(resources::add);
             }
         } catch (Exception exception) {
-            log.error("Couldn't get data from dbpedia", exception);
+//            log.error("Couldn't get data from dbpedia", exception);
         }
         return resources;
     }
@@ -119,7 +119,7 @@ public class DbPediaSparqlService {
             if (queryResultSet.isPresent()) {
                 return queryResultSet.get();
             }
-            log.info("Retry query {} in {} minutes", query, retryInterval);
+//            log.info("Retry query {} in {} minutes", query, retryInterval);
             Thread.sleep(retryInterval * RETRY_INTERVAL_MILLISECONDS);
         }
         throw new ResourceNotFoundException("Couldn't find any resources or dbpedia has an outage");
@@ -130,7 +130,7 @@ public class DbPediaSparqlService {
             QueryExecution exec = QueryExecutionFactory.sparqlService(dbPedialSparqlEndpoint, query);
             return Optional.ofNullable(exec.execSelect());
         } catch (Exception exception) {
-            log.error("Failed to get data from dbpedia for query {}", query, exception);
+//            log.error("Failed to get data from dbpedia for query {}", query, exception);
         }
         return Optional.empty();
     }

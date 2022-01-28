@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+    <title>BIDAR Scholarly technical report</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+</head>
+
+<body prefix="schema: http://schema.org/ sa: https://ns.science.ai/">
+    <div class="container">
+        <article typeof="schema:ScholarlyArticle">
+            <div class="text-center">
+                <h1>User Guide</h1>
+            </div>
+            <div class="row mt-2">
+                <section typeof="sa:Abstract">
+                    <div class="card">
+                        <h2 class="card-header">
+                            Intro
+                        </h2>
+                        <div class="card-body">
+                            This short user guide should serve as a guided walkthrough the main features of the Bidar
+                            applications so that anyone can use the tool as soon as possible to its full potential.
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="row mt-2">
+                <section>
+                    <div class="card">
+                        <h2 class="card-header">
+                            The order in which the sections are presented is the order in which you should should follow them.
+                        </h2>
+                        <section>
+                            <div class="card-body">
+                                <section>
+                                    <h3 class="card-title">Log in</h3>
+                                    <p>In the login page, you can enter your credentials(username, password) combination
+                                        in order to access the bidar tool</p>
+                                    <p>Also from this page you can access the registration page by cliking on the
+                                        'Register here' link</p>
+                                    <figure typeof="sa:Image">
+                                        <img class="img-fluid" src="./screenshots/login.PNG" alt="Login page">
+                                        <figcaption>This picture shows how the login page is looking like</figcaption>
+                                    </figure>
+                                </section>
+                                <section>
+                                    <h3 class="card-title">
+                                        Register
+                                    </h3>
+                                    <p>If you don't have an account you can create one by using an username/password
+                                        combination</p>
+                                    <p>The registration page can be accessed from the main login page</p>
+                                    <figure typeof="sa:Image">
+                                        <img class="img-fluid" src="./screenshots/register.PNG" alt="Registration page">
+                                        <figcaption>This picture shows how the registration page is looking like
+                                        </figcaption>
+                                    </figure>
+                                </section>
+                                <section>
+                                    <h3>What awesome stuff you can do with BIDAR? :)</h3>
+                                    <section>
+                                        <h4>Profile</h4>
+                                        <p>
+                                            The profile section of the frontend application allows the user to update
+                                            his first name, last name, age, country and his interests and skills
+                                            For the interests and skills side of things, a list will be dynamically
+                                            generated based on the data returned by the backend application for the
+                                            current user.
+                                            Also, the application allows the user to add new skills/interests and to
+                                            delete current ones if he's not happy with them or if he's not interested in
+                                            them anymore.
+                                            Moreover, the application will display a warning text if the user hasn't
+                                            enetered any skills or interests
+                                        </p>
+                                        <figure typeof="sa:Image">
+                                            <img class="img-fluid" src="./screenshots/profile.PNG" class="col"
+                                                alt="How the user can use the profile section to update his metadata"
+                                                style="width: 100%; height: 100%;">
+                                            <figcaption>This image shows how the user can use the profile section to
+                                                update his metadata</figcaption>
+                                        </figure>
+                                    </section>
+                                    <section>
+                                        <h4>Navigation</h4>
+                                        <p>Since the frontend application is a SPA, the current page is updated based on
+                                            the route take by the user through the navigation panel. The navigation is
+                                            done, as stated above, through a side bar, which updated it's layout based
+                                            on the current screen's dimensions in order to allow the user to use the
+                                            application even on devices with smaller screens, e.g: smartphone</p>
+                                        <div class="row">
+                                            <div class="col">
+                                                <figure typeof="sa:Image">
+                                                    <img class="img-fluid" src="./screenshots/sidebar.PNG" class="col"
+                                                        alt="How the side bar that provides the navigation capabilities of the application is looking like">
+                                                    <figcaption>This image shows how the sidebar can be used to navigate
+                                                        between the different features provided by the application
+                                                    </figcaption>
+                                                </figure>
+                                            </div>
+                                            <div class="col">
+                                                <figure typeof="sa:Image">
+                                                    <img class="img-fluid" src="./screenshots/sidebar_retracted.PNG" class="col"
+                                                        alt="How the side bar updates based on the screen size">
+                                                    <figcaption>This image shows how the sidebar updates based on the
+                                                        screen real-estate that's available</figcaption>
+                                                </figure>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <section>
+                                        <h4>Main UI - Explorer</h4>
+                                        <p>
+                                            The explore section of the frontend application allows the user to search
+                                            dbpedia for new resources, but also to see the resoruces the system returned
+                                            for his current set of skills and interests.
+                                            In addition, this section will have, at the bottom of the page, all the
+                                            resources the system recommends for the user based on his metadata and based
+                                            on the current resources too.
+                                            As a small UX touch, this section displays the number of search results and
+                                            the number of resources shown as recommendation to the user.
+                                        </p>
+                                        <p>
+                                            For each resource, a card like structure will be rendered, show:
+                                        <ul>
+                                            <li>A label</li>
+                                            <li>Resource's abstract</li>
+                                            <li>A link to the dbpedia for that specific resource</li>
+                                        </ul>
+                                        </p>
+                                        <figure typeof="sa:Image">
+                                            <img class="img-fluid" src="./screenshots/explorer.PNG" class="col"
+                                                alt="How the resources retrieved from dbpedia are rendered">
+                                            <figcaption>This image shows how the resources retrieved from dbpedia are
+                                                rendered</figcaption>
+                                        </figure>
+                                        <p>Also, the user has the possibility to limit the number of resources by
+                                            choosing from a predefined list of limits that can be applied to the search
+                                        </p>
+                                        <figure typeof="sa:Image">
+                                            <img class="img-fluid" src="./screenshots/explorer_limits.PNG" class="col"
+                                                alt="How the number of search results can be limited">
+                                            <figcaption>This image shows how the number of search results can be limited
+                                            </figcaption>
+                                        </figure>
+                                    </section>
+                                    <section>
+                                        <h4>Main UI - Explorer</h4>
+                                        <p>
+                                            The explore section of the frontend application allows the user to search
+                                            dbpedia for new resources, but also to see the resoruces the system returned
+                                            for his current set of skills and interests.
+                                            In addition, this section will have, at the bottom of the page, all the
+                                            resources the system recommends for the user based on his metadata and based
+                                            on the current resources too.
+                                            As a small UX touch, this section displays the number of search results and
+                                            the number of resources shown as recommendation to the user.
+                                        </p>
+                                        <p>
+                                            For each resource, a card like structure will be rendered, show:
+                                        <ul>
+                                            <li>A label</li>
+                                            <li>Resource's abstract</li>
+                                            <li>A link to the dbpedia for that specific resource</li>
+                                        </ul>
+                                        </p>
+                                        <figure typeof="sa:Image">
+                                            <img class="img-fluid" src="./screenshots/explorer.PNG" class="col"
+                                                alt="How the resources retrieved from dbpedia are rendered">
+                                            <figcaption>This image shows how the resources retrieved from dbpedia are
+                                                rendered</figcaption>
+                                        </figure>
+                                        <p>Also, the user has the possibility to limit the number of resources by
+                                            choosing from a predefined list of limits that can be applied to the search
+                                        </p>
+                                        <figure typeof="sa:Image">
+                                            <img class="img-fluid" src="./screenshots/explorer_limits.PNG" class="col"
+                                                alt="How the number of search results can be limited">
+                                            <figcaption>This image shows how the number of search results can be limited
+                                            </figcaption>
+                                        </figure>
+                                    </section>
+                                </section>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </article>
+    </div>
+
+</body>
+
+</html>

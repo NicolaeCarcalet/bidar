@@ -2,8 +2,6 @@ package uaic.fii.main.model;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotNull;
-
 @Data
 public class RequestInputDto {
 

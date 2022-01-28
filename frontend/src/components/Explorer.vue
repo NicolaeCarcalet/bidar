@@ -114,7 +114,7 @@ export default {
 
         search() {
             let payload = {
-                queryObject: `dbr:${this.searchTerm}`,
+                queryObject: `dbr:${this.capitalizeFirstLetter(this.searchTerm)}`,
                 countryCode: this.userProfile.countryCode,
                 limit: this.limit,
             };
@@ -130,6 +130,10 @@ export default {
                 });
                 this.getRecommendations(data);
             });
+        },
+
+        capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
         },
 
         getRecommendations(resources) {
