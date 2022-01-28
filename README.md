@@ -3,6 +3,10 @@
 # Scholarly
 The scholarly report can be found here: https://nicolaecarcalet.github.io/bidar/ and the source in 'docs/index.html'
 
+The user guide can be found in: 'docs/user_guide'
+
+The demo video can be found in: 'docs/demo'
+
 The open api specification files can be found in 'docs/openapi'.
 
 # Contributions per team member
