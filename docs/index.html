@@ -546,12 +546,12 @@
                             <h3>Deployment: Google Cloud</h3>
                             <p>Services that are used:
                                 <ul>
-                                    <li><b>Google Cloud SQL</b></li>
+                                    <li><b>Google Cloud SQL: relational database</b></li>
                                     <li><b>App Engine</b>: managed runtime for the services</li>
                                 </ul>
                             </p>
                             <p>
-                                For each service an <b>app.yaml</b> file was added in order to control the
+                                For each service an <code>app.yaml</code> file was added in order to control the
                                 deployment that happened in google cloud's app engine.
                                 Unfortunatly, I didn't use any form of Intrastructure as Code in order to
                                 automate and improve the infrastructure side of things, all the resources:
@@ -582,9 +582,30 @@
                                         <td>Recommendation</td>
                                         <td>https://recommendations-dot-wade-339321.ew.r.appspot.com/</td>
                                     </tr>
+                                    <tr>
+                                        <td>VueJS application</td>
+                                        <td>https://ui-dot-wade-339321.ew.r.appspot.com/</td>
+                                    </tr>
                                 </tbody>
                             </table>
                             <p class="text-danger">NOTE: Keeping services in the cloud(especially in app engine) isn't cheap. These services will be discontinued as soon as the presentation is over.</p>
+                            <p>A sample of an app.yaml file that was used in one of the services:</p>
+                            <pre>
+                                <code>
+                                    runtime: java11
+
+                                    network:
+                                      forwarded_ports:
+                                        - 8080/tcp
+                                    
+                                    manual_scaling:
+                                      instances: 1
+                                    
+                                    resources:
+                                      cpu: 1
+                                      memory_gb: 3
+                                </code>
+                            </pre>
                         </section>
                     </div>
                 </section>
@@ -692,6 +713,25 @@
                                     interests, and other profile data.
                                 </p>
                             </section>
+                            <section>
+                                <h3>Google Cloud App Engine</h3>
+                                <p>
+                                    Google Cloud App Engine is a fully managed service offered by google cloud that allows developers to run their applications without having to worry about infrastructure and scaling matters.
+                                    Another advantage of google cloud's app engine is the ease of use and seamless integration, especially for Java applications that use Spring Boot, all that is required for these type of applications being a <code>app.yaml</code> file that can be used to configure certain infrastructure related things for app engine, like: what version of java you want to use, if you're doing port forwarding etc.
+                                    In addition, for Spring Boot applications, a maven plugin and starter packages are available which simplifies even further the development and deployment experience for any programmer.
+                                </p>
+                            </section>
+                            <section>
+                                <h3>Google Cloud SQL</h3>
+                                <p>Google Cloud SQL is a service offered by Google Cloud that allows developers to use traditional relational databases like:
+                                    <ul>
+                                        <li>MySQL</li>
+                                        <li>Postgre</li>
+                                        <li>SQL Server</li>
+                                    </ul>
+                                    in a fully managed service. By being fully managed, the developers can focus on writing the bussiness logic, and get rid of the infrastructure side of thigs.
+                                </p>
+                            </section>
                         </div>
                     </div>
                 </section>
@@ -711,7 +751,7 @@
                                     <li class="list-group-item list-group-item-action list-group-item-secondary">Wrote
                                         the following sections in the documentation file: What is it?, FrontEnd,
                                         Architecture, Final users(refine), Services, Tech stack(Java, Spring Boot,
-                                        Apache Jena, VueJS, H2), update section and general work. Also, hosted the document on github pages</li>
+                                        Apache Jena, VueJS, H2, Google Cloud App engine, Google cloud sql), update section and general work. Also, hosted the document on github pages</li>
                                     <li class="list-group-item list-group-item-action list-group-item-secondary">
                                         Created the open api specification using java annoation</li>
                                     <li class="list-group-item list-group-item-action list-group-item-secondary">Created
@@ -725,7 +765,7 @@
                                         Finished the integration between the login and the auth service</li>
                                     <li class="list-group-item list-group-item-action list-group-item-secondary">Wrote
                                         the whole the user guide document</li>
-                                    <li class="list-group-item list-group-item-action list-group-item-secondary">Deployed the services in google cloud</li>
+                                    <li class="list-group-item list-group-item-action list-group-item-secondary">Deployed the services and frontend in google cloud</li>
                                     <li class="list-group-item list-group-item-action list-group-item-secondary">
                                         Recorder the demo video</li>
                                 </ol>
@@ -769,6 +809,8 @@
                                     https://www.w3.org/wiki/LinkedData</li>
                                 <li class="list-group-item list-group-item-action list-group-item-secondary">7.
                                     https://www.h2database.com/html/main.html</li>
+                                <li class="list-group-item list-group-item-action list-group-item-secondary">7.
+                                    https://cloud.google.com/appengine/docs/java</li>
                             </ol>
                         </div>
                     </div>

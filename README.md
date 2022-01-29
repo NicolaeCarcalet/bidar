@@ -24,7 +24,7 @@ Nicolae Carcalet
 * Finished the integration between the login and the auth service
 #### Cloud
 * Set up the google cloud infrastructure
-* Deployed the services in google cloud, app engine
+* Deployed the services and frontend in google cloud, app engine
 
 ***
 Eduard Ghergheluca
