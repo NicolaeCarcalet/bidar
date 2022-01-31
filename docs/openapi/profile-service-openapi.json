@@ -7,132 +7,37 @@
     "servers": [
         {
             "url": "http://localhost:8081",
-            "description": "Profile service open api specification"
+            "description": "Generated server url"
         }
     ],
     "paths": {
-        "/profile/{userId}": {
-            "get": {
-                "tags": [
-                    "user-profile-controller"
-                ],
-                "description": "This will return all the user's profile data",
-                "operationId": "getUserProfile",
-                "parameters": [
-                    {
-                        "name": "userId",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "The Authorization header is mandatory and its valid must be provide JWT token in the form: Authorization: Bearer + <token>",
-                        "required": true,
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "404": {
-                        "description": "Not Found",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/UserProfileDto"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "user-profile-controller"
-                ],
-                "description": "This will update an user's profile",
-                "operationId": "updateUserProfile",
-                "parameters": [
-                    {
-                        "name": "userId",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "The Authorization header is mandatory and its valid must be provide JWT token in the form: Authorization: Bearer + <token>",
-                        "required": true,
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/UserProfileDto"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "404": {
-                        "description": "Not Found",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "200": {
-                        "description": "OK"
-                    }
-                }
-            }
-        },
-        "/profile": {
+        "/resources": {
             "post": {
                 "tags": [
-                    "user-profile-controller"
+                    "main-controller"
                 ],
-                "operationId": "createProfile",
+                "description": "This will return all the resources for the given request",
+                "operationId": "getResources",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "The Authorization header is mandatory and its valid must be provide JWT token in the form: Authorization: Bearer + <token>",
+                        "required": true,
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/UserProfileDto"
+                                "$ref": "#/components/schemas/RequestInputDto"
                             }
                         }
                     },
@@ -154,7 +59,10 @@
                         "content": {
                             "*/*": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/UserProfileDto"
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ResourceDto"
+                                    }
                                 }
                             }
                         }
@@ -162,81 +70,14 @@
                 }
             }
         },
-        "/profile/skill/{userId}": {
-            "get": {
-                "tags": [
-                    "user-skill-controller"
-                ],
-                "description": "This will return all the skills for an user",
-                "operationId": "getUserSkills",
-                "parameters": [
-                    {
-                        "name": "userId",
-                        "in": "path",
-                        "description": "The id of the user",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "The Authorization header is mandatory and its valid must be provide JWT token in the form: Authorization: Bearer + <token>",
-                        "required": true,
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "404": {
-                        "description": "Not Found",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/UserSkillDto"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            },
+        "/diff": {
             "post": {
                 "tags": [
-                    "user-skill-controller"
+                    "main-controller"
                 ],
-                "description": "Add a skill for the user",
-                "operationId": "addUserSkills",
+                "description": "This will compare the given DTOs and return all the differences between them",
+                "operationId": "diffResources",
                 "parameters": [
-                    {
-                        "name": "userId",
-                        "in": "path",
-                        "description": "The id of the user",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    },
                     {
                         "name": "Authorization",
                         "in": "header",
@@ -255,7 +96,10 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/UserSkillDto"
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ResourceDto"
+                                }
                             }
                         }
                     },
@@ -273,342 +117,14 @@
                         }
                     },
                     "200": {
-                        "description": "OK"
-                    }
-                }
-            }
-        },
-        "/profile/interest/{userId}": {
-            "get": {
-                "tags": [
-                    "user-interest-controller"
-                ],
-                "description": "This will return all the interest for an user",
-                "operationId": "getUserInterests",
-                "parameters": [
-                    {
-                        "name": "userId",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "The Authorization header is mandatory and its valid must be provide JWT token in the form: Authorization: Bearer + <token>",
-                        "required": true,
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "404": {
-                        "description": "Not Found",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "200": {
                         "description": "OK",
                         "content": {
                             "*/*": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/UserInterestDto"
-                                    }
+                                    "$ref": "#/components/schemas/ResourceDiffDto"
                                 }
                             }
                         }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "user-interest-controller"
-                ],
-                "description": "Add an interest for an user",
-                "operationId": "addUserInterests",
-                "parameters": [
-                    {
-                        "name": "interestId",
-                        "in": "path",
-                        "description": "The interest id that will be added",
-                        "required": true
-                    },
-                    {
-                        "name": "userId",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "The Authorization header is mandatory and its valid must be provide JWT token in the form: Authorization: Bearer + <token>",
-                        "required": true,
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/UserInterestDto"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "404": {
-                        "description": "Not Found",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "200": {
-                        "description": "OK"
-                    }
-                }
-            }
-        },
-        "/profile/skill": {
-            "get": {
-                "tags": [
-                    "user-skill-controller"
-                ],
-                "description": "This will return all the available skills",
-                "operationId": "getAllUserSkills",
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "The Authorization header is mandatory and its valid must be provide JWT token in the form: Authorization: Bearer + <token>",
-                        "required": true,
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "404": {
-                        "description": "Not Found",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/UserSkillDto"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/profile/interest": {
-            "get": {
-                "tags": [
-                    "user-interest-controller"
-                ],
-                "description": "This will return all the available interest",
-                "operationId": "getAllInterests",
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "The Authorization header is mandatory and its valid must be provide JWT token in the form: Authorization: Bearer + <token>",
-                        "required": true,
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "404": {
-                        "description": "Not Found",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/UserInterestDto"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/profile/skill/{userId}/{skillId}": {
-            "delete": {
-                "tags": [
-                    "user-skill-controller"
-                ],
-                "description": "Deletes a skill assigned to an user",
-                "operationId": "deleteUserSkills",
-                "parameters": [
-                    {
-                        "name": "skillId",
-                        "in": "path",
-                        "description": "The skill id that will be deleted",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "userId",
-                        "in": "path",
-                        "description": "The id of the user",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "The Authorization header is mandatory and its valid must be provide JWT token in the form: Authorization: Bearer + <token>",
-                        "required": true,
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "404": {
-                        "description": "Not Found",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "200": {
-                        "description": "OK"
-                    }
-                }
-            }
-        },
-        "/profile/interest/{userId}/{interestId}": {
-            "delete": {
-                "tags": [
-                    "user-interest-controller"
-                ],
-                "description": "Deletes an interest assigned to an user",
-                "operationId": "deleteUserInterests",
-                "parameters": [
-                    {
-                        "name": "interestId",
-                        "in": "path",
-                        "description": "The interest id that will be deleted",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    },
-                    {
-                        "name": "userId",
-                        "in": "path",
-                        "description": "The id of the user",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "The Authorization header is mandatory and its valid must be provide JWT token in the form: Authorization: Bearer + <token>",
-                        "required": true,
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "404": {
-                        "description": "Not Found",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "200": {
-                        "description": "OK"
                     }
                 }
             }
@@ -616,66 +132,52 @@
     },
     "components": {
         "schemas": {
-            "UserInterestDto": {
+            "RequestInputDto": {
                 "type": "object",
                 "properties": {
-                    "interestId": {
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    "interestData": {
-                        "type": "string"
-                    }
-                }
-            },
-            "UserProfileDto": {
-                "type": "object",
-                "properties": {
-                    "userId": {
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    "firstName": {
+                    "querySubject": {
                         "type": "string"
                     },
-                    "lastName": {
+                    "queryPredicate": {
                         "type": "string"
                     },
-                    "country": {
+                    "queryObject": {
                         "type": "string"
                     },
-                    "age": {
+                    "countryCode": {
+                        "type": "string"
+                    },
+                    "limit": {
                         "type": "integer",
                         "format": "int32"
-                    },
-                    "skills": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/UserSkillDto"
-                        }
-                    },
-                    "interests": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/UserInterestDto"
-                        }
-                    },
-                    "friends": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/UserProfileDto"
+                    }
+                }
+            },
+            "ResourceDto": {
+                "type": "object",
+                "properties": {
+                    "resourceMetadata": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
                         }
                     }
                 }
             },
-            "UserSkillDto": {
+            "ResourceDiffDto": {
                 "type": "object",
                 "properties": {
-                    "skillId": {
-                        "type": "string"
+                    "uniqueKeys": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
                     },
-                    "skillData": {
-                        "type": "string"
+                    "uniqueValues": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
                     }
                 }
             }

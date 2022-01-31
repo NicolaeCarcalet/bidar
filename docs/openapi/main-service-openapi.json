@@ -6,8 +6,8 @@
     },
     "servers": [
         {
-            "url": "http://localhost:8089",
-            "description": "Main service open api specification"
+            "url": "http://localhost:8081",
+            "description": "Generated server url"
         }
     ],
     "paths": {
@@ -133,9 +133,6 @@
     "components": {
         "schemas": {
             "RequestInputDto": {
-                "required": [
-                    "querySubject"
-                ],
                 "type": "object",
                 "properties": {
                     "querySubject": {
@@ -146,6 +143,13 @@
                     },
                     "queryObject": {
                         "type": "string"
+                    },
+                    "countryCode": {
+                        "type": "string"
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "format": "int32"
                     }
                 }
             },

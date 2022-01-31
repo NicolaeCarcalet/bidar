@@ -6,8 +6,8 @@
     },
     "servers": [
         {
-            "url": "http://localhost:8083",
-            "description": "Recommendation open api specification"
+            "url": "http://localhost:8086",
+            "description": "Generated server url"
         }
     ],
     "paths": {
@@ -73,17 +73,8 @@
                             "$ref": "#/components/schemas/ResourceDto"
                         }
                     },
-                    "userInterests": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/UserInterestDto"
-                        }
-                    },
-                    "userSkills": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/UserSkillDto"
-                        }
+                    "countryCode": {
+                        "type": "string"
                     }
                 }
             },
@@ -98,32 +89,16 @@
                     }
                 }
             },
-            "UserInterestDto": {
-                "type": "object",
-                "properties": {
-                    "interestId": {
-                        "type": "string"
-                    },
-                    "interestData": {
-                        "type": "string"
-                    }
-                }
-            },
-            "UserSkillDto": {
-                "type": "object",
-                "properties": {
-                    "skillId": {
-                        "type": "string"
-                    },
-                    "skillData": {
-                        "type": "string"
-                    }
-                }
-            },
             "RecommendationOutputDto": {
                 "type": "object",
                 "properties": {
                     "recommendationResource": {
+                        "type": "string"
+                    },
+                    "recommendationAbstract": {
+                        "type": "string"
+                    },
+                    "recommendationLabel": {
                         "type": "string"
                     }
                 }
