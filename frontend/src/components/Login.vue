@@ -45,9 +45,9 @@ export default {
     login() {
       this.$http.post(this.$hostname + '/auth', {username: this.username, password: this.password}).then((response) => {
         if(response.data !== 'Couldn\'t generate jwt token') {
-          localStorage.setItem('auth_token', response.data);
-          localStorage.setItem('username', this.username);
-          this.$router.push({"name": "Profile"});
+            localStorage.setItem('auth_token', response.data);
+            localStorage.setItem('username', this.username);
+            this.$router.push({"name": "Profile"});
         } else {
           this.loginError = true;
         }

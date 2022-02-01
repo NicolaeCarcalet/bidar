@@ -15,7 +15,7 @@ Vue.component('v-icon', Icon)
 Vue.use(VueAxios, axios)
 Vue.config.productionTip = false
 
-Vue.prototype.$hostname = 'https://wade-339321.ew.r.appspot.com/'
+Vue.prototype.$hostname = 'https://wade-339321.ew.r.appspot.com//'
 Vue.prototype.$profile = 'https://profile-dot-wade-339321.ew.r.appspot.com/'
 Vue.prototype.$main = 'https://main-dot-wade-339321.ew.r.appspot.com/'
 Vue.prototype.$recommendation = 'https://recommendations-dot-wade-339321.ew.r.appspot.com/'

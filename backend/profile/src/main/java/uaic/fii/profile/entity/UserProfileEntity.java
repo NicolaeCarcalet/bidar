@@ -10,8 +10,7 @@ import javax.persistence.*;
 public class UserProfileEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id", unique = true)
+    @Column(name = "user_id")
     private Long userId;
 
     @Column(name = "first_name")

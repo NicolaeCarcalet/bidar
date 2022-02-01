@@ -11,6 +11,37 @@
         }
     ],
     "paths": {
+        "/userId": {
+            "post": {
+                "tags": [
+                    "user-controller"
+                ],
+                "operationId": "getUserId",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserCredentials"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/register": {
             "post": {
                 "tags": [
@@ -74,6 +105,17 @@
     },
     "components": {
         "schemas": {
+            "UserCredentials": {
+                "type": "object",
+                "properties": {
+                    "username": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            },
             "UserEntity": {
                 "required": [
                     "password",
@@ -93,17 +135,6 @@
                     "password": {
                         "maxLength": 20,
                         "minLength": 1,
-                        "type": "string"
-                    }
-                }
-            },
-            "UserCredentials": {
-                "type": "object",
-                "properties": {
-                    "username": {
-                        "type": "string"
-                    },
-                    "password": {
                         "type": "string"
                     }
                 }

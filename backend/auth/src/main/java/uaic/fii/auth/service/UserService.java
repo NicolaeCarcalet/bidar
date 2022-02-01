@@ -2,8 +2,12 @@ package uaic.fii.auth.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import uaic.fii.auth.model.UserCredentials;
 import uaic.fii.auth.model.UserEntity;
 import uaic.fii.auth.repository.UserRepository;
+
+import javax.validation.ValidationException;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -15,6 +19,14 @@ public class UserService {
     {
         UserEntity newUser = userRepository.save(user);
         return newUser.getUserId();
+    }
+
+    public Long getUserId(String userName) {
+        Optional<UserEntity> userEntity = userRepository.findUserByUsername(userName);
+        if (userEntity.isEmpty()) {
+            throw new ValidationException("User doesn't exist");
+        }
+        return userEntity.get().getUserId();
     }
 
     public Boolean passwordsMatched(UserEntity user){

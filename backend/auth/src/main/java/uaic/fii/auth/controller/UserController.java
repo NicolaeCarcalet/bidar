@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import uaic.fii.auth.model.UserCredentials;
 import uaic.fii.auth.model.UserEntity;
 import uaic.fii.auth.service.UserService;
 
@@ -16,6 +17,11 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @PostMapping(value = "/userId")
+    public Long getUserId(@RequestBody UserCredentials userCredentials) {
+        return userService.getUserId(userCredentials.getUsername());
+    }
 
     @PostMapping(value = "/register", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
     @ResponseBody
