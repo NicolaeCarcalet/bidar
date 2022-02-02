@@ -5,7 +5,7 @@ The scholarly report can be found here: https://nicolaecarcalet.github.io/bidar/
 
 The user guide can be found in: 'docs/user_guide'
 
-The demo video can be found in: 'docs/demo'
+The demo video can be found in: 'docs/demo' and it is also available on google drive: https://drive.google.com/file/d/1VKqKpGzWrbgfJVQ8hPy_Jqk6IIREIIuE/view?usp=sharing
 
 The open api specification files can be found in 'docs/openapi'.
 
